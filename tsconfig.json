@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "module": "es6",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+    "sourceMap": true,
+    "jsx": "react",
+    "target": "es5",
+    "strictNullChecks": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "react-month-picker-input": ["MonthPickerInput.tsx"],
+      "react-month-picker-input/dist/react-datepicker.css": ["styles/index.css"]
+    }
+  },
+  "exclude": [
+    "spec/**/*",
+    "node_modules",
+    "dist/**/*",
+    "tmp",
+    "index.ts"
+  ],
+  "compileOnSave": false
+}

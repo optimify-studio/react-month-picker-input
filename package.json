@@ -1,0 +1,48 @@
+{
+  "name": "react-month-picker-input",
+  "version": "0.0.1",
+  "description": "Simple month picker with calendar and input field with mask.",
+  "main": "./dist/react-month-picker-input.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slavakisel/react-month-picker-input.git"
+  },
+  "keywords": [
+    "react",
+    "month picker"
+  ],
+  "author": "Slava Kisel <letitbe400@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/slavakisel/react-month-picker-input/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^8.0.22",
+    "@types/react": "^16.0.2",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "gulp-concat": "^2.6.1",
+    "html-webpack-plugin": "^2.30.1",
+    "path": "^0.12.7",
+    "standard-version": "^4.2.0",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.3.7",
+    "tslint": "^5.7.0",
+    "tslint-microsoft-contrib": "^5.0.1",
+    "typescript": "^2.5.2",
+    "webpack": "^3.5.6",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-input-mask": "^1.0.7"
+  },
+  "scripts": {
+    "test": "test",
+    "build": "webpack",
+    "build:demo": "webpack --config webpack.demo.config.js",
+    "compile": "npm run build && npm run build:demo",
+    "release": "standard-version"
+  }
+}
