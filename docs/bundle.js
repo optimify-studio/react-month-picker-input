@@ -22363,8 +22363,8 @@ var MonthPickerInput = /** @class */ (function (_super) {
     function MonthPickerInput(props) {
         var _this = _super.call(this, props) || this;
         _this.onCalendarChange = function (year, month) {
-            var inputValue = _this.maskedInputValue(year, month);
-            _this.setState({ inputValue: inputValue });
+            var inputValue = _this.maskedInputValue(year, month + 1);
+            _this.setState({ inputValue: inputValue, year: year, month: month });
             _this.onChange(inputValue, year, month);
         };
         _this.maskedInputValue = function (year, month) {
@@ -22375,12 +22375,11 @@ var MonthPickerInput = /** @class */ (function (_super) {
         _this.onInputChange = function (e) {
             var inputValue = e.target.value;
             if (inputValue.length && inputValue.indexOf('_') === -1) {
-                var _a = inputValue.split('/'), month = _a[0], year = _a[1];
-                var monthVal = parseInt(month) - 1;
-                var yearVal = parseInt(year);
-                var value = new Date(yearVal, monthVal, 1);
-                _this.setState({ value: value, inputValue: inputValue });
-                _this.onChange(inputValue, yearVal, monthVal);
+                var _a = inputValue.split('/'), monthVal = _a[0], yearVal = _a[1];
+                var month = parseInt(monthVal) - 1;
+                var year = parseInt(yearVal);
+                _this.setState({ year: year, month: month, inputValue: inputValue });
+                _this.onChange(inputValue, year, month);
             }
             else
                 _this.setState({ inputValue: inputValue });
@@ -22404,8 +22403,9 @@ var MonthPickerInput = /** @class */ (function (_super) {
             _this.setState({ showCalendar: _this.input.input == e.target });
         };
         _this.calendar = function () {
+            var _a = _this.state, year = _a.year, month = _a.month;
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { position: 'relative' } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { value: _this.state.value, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick })));
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick })));
         };
         _this.inputProps = function () {
             return Object.assign({}, {
@@ -22420,13 +22420,16 @@ var MonthPickerInput = /** @class */ (function (_super) {
             }, _this.props.inputProps);
         };
         var value = _this.props.value;
-        var date = null, inputValue = '';
+        var inputValue = '', year = null, month = null;
         if (value) {
-            date = typeof value === 'string' ? new Date(value) : value;
-            inputValue = _this.maskedInputValue(date.getFullYear(), date.getMonth() + 1);
+            var date = typeof value === 'string' ? new Date(value) : value;
+            year = date.getFullYear();
+            month = date.getMonth();
+            inputValue = _this.maskedInputValue(year, month + 1);
         }
         _this.state = {
-            value: date,
+            year: year,
+            month: month,
             inputValue: inputValue,
             showCalendar: false
         };
@@ -23376,7 +23379,7 @@ var MonthCalendar = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.onChange = function (selectedYear, selectedMonth) {
             if (selectedYear !== null && selectedMonth !== null) {
-                _this.props.onChange(selectedYear, selectedMonth + 1);
+                _this.props.onChange(selectedYear, selectedMonth);
             }
         };
         _this.selectYear = function (selectedYear) {
@@ -23406,32 +23409,29 @@ var MonthCalendar = /** @class */ (function (_super) {
             var selectedMonth = _this.state.selectedMonth;
             return __WEBPACK_IMPORTED_MODULE_3__constants__["a" /* MONTHS_NAMES */].map(function (month, index) {
                 var selectedKlass = selectedMonth === index ? 'selected_cell' : '';
-                return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: index, onClick: function () { _this.selectMonth(index); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, month));
+                return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: index, onClick: function () { return _this.selectMonth(index); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, month));
             });
         };
         _this.renderYears = function () {
-            return _this.state.years.map(function (year, i) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i, onClick: function () { _this.selectYear(year); }, className: "col_mp span_1_of_3_mp" }, year)); });
+            return _this.state.years.map(function (year, i) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i, onClick: function () { return _this.selectYear(year); }, className: "col_mp span_1_of_3_mp" }, year)); });
         };
-        var value = _this.props.value;
-        var selectedYear = value ? value.getFullYear() : null;
-        var selectedMonth = value ? value.getMonth() : null;
-        var startYear = selectedYear || _this.props.startYear || new Date().getFullYear() - 6;
+        var _a = _this.props, year = _a.year, month = _a.month;
+        var startYear = _this.props.startYear || new Date().getFullYear() - 6;
         _this.state = {
             years: Array.from({ length: 12 }, function (v, k) { return k + startYear; }),
-            selectedYear: selectedYear,
-            selectedMonth: selectedMonth,
-            currentView: selectedMonth ? __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */] : __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */],
+            selectedYear: year,
+            selectedMonth: month,
+            currentView: month ? __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */] : __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */],
         };
         return _this;
     }
     MonthCalendar.prototype.componentWillReceiveProps = function (nextProps) {
-        var value = nextProps.value;
-        if (value && value !== this.props.value) {
-            var selectedYear = value.getFullYear();
-            var selectedMonth = value.getMonth();
+        var year = nextProps.year, month = nextProps.month;
+        var _a = this.state, selectedYear = _a.selectedYear, selectedMonth = _a.selectedMonth;
+        if (year && month && (year !== selectedYear || month !== selectedYear)) {
             this.setState({
-                selectedYear: selectedYear,
-                selectedMonth: selectedMonth,
+                selectedYear: year,
+                selectedMonth: month,
                 currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */]
             });
         }
