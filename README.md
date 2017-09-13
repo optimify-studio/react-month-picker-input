@@ -27,6 +27,7 @@ React-Month-Picker-Input generates an input field and year/month calendar opened
 
 ```js
 var MonthPickerInput = require('react-month-picker-input');
+require('react-month-picker-input/dist/react-month-picker-input.css');
 
 <MonthPickerInput
   value={new Date()}
