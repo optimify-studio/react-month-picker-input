@@ -17,16 +17,21 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.22",
     "@types/react": "^16.0.2",
+    "chai": "^4.1.2",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.0",
     "gulp-concat": "^2.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "mocha": "^3.5.3",
     "path": "^0.12.7",
     "standard-version": "^4.2.0",
     "style-loader": "^0.18.2",
     "ts-loader": "^2.3.7",
+    "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
     "tslint-microsoft-contrib": "^5.0.1",
     "typescript": "^2.5.2",
@@ -39,11 +44,11 @@
     "react-input-mask": "^1.0.7"
   },
   "scripts": {
-    "test": "test",
+    "test": "mocha -r ts-node/register tests/**/*_test.ts",
     "build": "webpack",
     "build:demo": "webpack --config webpack.demo.config.js",
     "compile": "npm run build && npm run build:demo",
-    "release": "standard-version",
+    "release": "npm run test && npm run build && npm run standard-version",
     "serve": "webpack-dev-server --config webpack.demo.config.js"
   }
 }

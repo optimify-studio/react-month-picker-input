@@ -40,7 +40,10 @@ class MonthCalendar extends Component<IProps, IState> {
     const { year, month } = nextProps;
     const { selectedYear, selectedMonth } = this.state;
 
-    if (year && month && (year !== selectedYear || month !== selectedYear)) {
+    if (typeof year == 'number' &&
+      typeof month == 'number' &&
+      (year !== selectedYear || month !== selectedYear)
+    ) {
       this.setState({
         selectedYear: year,
         selectedMonth: month,

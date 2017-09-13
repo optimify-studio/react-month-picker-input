@@ -4,6 +4,7 @@ import InputMask from 'react-input-mask';
 const DATE_FORMAT = 'MM/YY';
 
 import MonthCalendar from './calendar';
+import { valuesToMask, valuesFromMask } from './utils';
 
 import './styles/index.css';
 
@@ -16,14 +17,14 @@ export interface IProps {
     id?: string,
   },
   onChange?: OnChange,
-}
+};
 
 export interface IState {
   year: null|number,
   month: null|number,
   inputValue: string,
   showCalendar: boolean,
-}
+};
 
 class MonthPickerInput extends Component<IProps, IState> {
   wrapper: HTMLDivElement;
@@ -32,7 +33,7 @@ class MonthPickerInput extends Component<IProps, IState> {
   public static defaultProps: Partial<IProps> = {
     value: undefined,
     inputProps: {}
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -43,7 +44,7 @@ class MonthPickerInput extends Component<IProps, IState> {
       const date = typeof value === 'string' ? new Date(value) : value;
       year = date.getFullYear();
       month = date.getMonth();
-      inputValue = this.maskedInputValue(year, month + 1);
+      inputValue = valuesToMask(month, year);
     }
 
     this.state = {
@@ -52,49 +53,42 @@ class MonthPickerInput extends Component<IProps, IState> {
       inputValue,
       showCalendar: false
     }
-  }
+  };
 
   onCalendarChange = (year, month): void => {
-    const inputValue = this.maskedInputValue(year, month + 1);
+    const inputValue = valuesToMask(month, year);
     this.setState({ inputValue, year, month });
     this.onChange(inputValue, year, month);
-  }
-
-  maskedInputValue = (year, month): string => {
-    const monthVal = month < 10 ? '0' + month : month;
-    const yearVal = year.toString().slice(2);
-    return monthVal + '/' + yearVal;
-  }
+  };
 
   onInputChange = (e: { target: { value: string }}): void => {
-    const inputValue = e.target.value;
+    const mask = e.target.value;
 
-    if (inputValue.length && inputValue.indexOf('_') === -1) {
-      const [monthVal, yearVal] = inputValue.split('/');
-      const month = parseInt(monthVal) - 1;
-      const year = parseInt(yearVal);
+    if (mask.length && mask.indexOf('_') === -1) {
+      const [month, year] = valuesFromMask(mask);
+      const inputValue = valuesToMask(month, year);
       this.setState({ year, month, inputValue });
       this.onChange(inputValue, year, month);
-    } else this.setState({ inputValue });
+    } else this.setState({ inputValue: mask });
   };
 
   onChange = (inputValue, year, month) => {
     if (this.props.onChange) {
       this.props.onChange(inputValue, year, month);
     }
-  }
+  };
 
   onInputBlur = (e): void => {
     if (!this.wrapper.contains(e.target)) {
       this.setState({ showCalendar: false })
     }
-  }
+  };
 
   onInputFocus = (e): void => {
     if (this.wrapper.contains(e.target)) {
       this.setState({ showCalendar: true });
     }
-  }
+  };
 
   onCalendarOutsideClick = (e): void => {
     this.setState({ showCalendar: this.input.input == e.target });
@@ -112,7 +106,7 @@ class MonthPickerInput extends Component<IProps, IState> {
         />
       </div>
     )
-  }
+  };
 
   inputProps = (): object => {
     return Object.assign({}, {
@@ -124,7 +118,7 @@ class MonthPickerInput extends Component<IProps, IState> {
       onFocus: this.onInputFocus,
       onChange: this.onInputChange,
     }, this.props.inputProps)
-  }
+  };
 
   render() {
     const { inputValue, showCalendar } = this.state;
@@ -139,7 +133,7 @@ class MonthPickerInput extends Component<IProps, IState> {
         { showCalendar && this.calendar() }
       </div>
     );
-  }
+  };
 };
 
 export default MonthPickerInput;

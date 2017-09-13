@@ -17,8 +17,7 @@ class Head extends PureComponent<IProps> {
       return year;
     } else {
       const monthVal = month < 10 ? '0' + month : month;
-      const yearVal = year.toString().slice(2);
-      return monthVal + '/' + yearVal;
+      return monthVal + '/' + year;
     }
   };
 
