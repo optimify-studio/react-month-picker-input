@@ -5,7 +5,7 @@
     "experimentalDecorators": true,
     "lib": ["es6", "dom"],
     "allowSyntheticDefaultImports": true,
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "Node",
     "sourceMap": true,
     "jsx": "react",

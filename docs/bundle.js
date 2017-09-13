@@ -9713,21 +9713,25 @@ module.exports = __webpack_require__(83);
 
 /***/ }),
 /* 83 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__ = __webpack_require__(185);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __webpack_require__(15);
-var react_dom_1 = __webpack_require__(99);
-var react_month_picker_input_1 = __webpack_require__(185);
-react_dom_1.default.render((react_1.default.createElement("div", null,
-    react_1.default.createElement("label", { htmlFor: "ex-0" },
+
+
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render((__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { htmlFor: "ex-0" },
         "Without default value",
-        react_1.default.createElement(react_month_picker_input_1.default, { inputProps: { id: "ex-0", name: "ex[0]" } })),
-    react_1.default.createElement("label", { htmlFor: "ex-1" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { inputProps: { id: "ex-0", name: "ex[0]" } })),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { htmlFor: "ex-1" },
         "With default value",
-        react_1.default.createElement(react_month_picker_input_1.default, { value: new Date(), inputProps: { id: "ex-1", name: "ex[1]" } })))), document.getElementById('examples'));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { value: new Date(), inputProps: { id: "ex-1", name: "ex[1]" } })))), document.getElementById('examples'));
 
 
 /***/ }),
@@ -22322,10 +22326,16 @@ module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
 /* 185 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_input_mask__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__calendar__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_index_css__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__styles_index_css__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -22344,13 +22354,12 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __webpack_require__(15);
-var react_input_mask_1 = __webpack_require__(186);
+
+
 var DATE_FORMAT = 'MM/YY';
-var calendar_1 = __webpack_require__(192);
-var utils_1 = __webpack_require__(197);
-__webpack_require__(198);
+
+
+
 ;
 ;
 var MonthPickerInput = /** @class */ (function (_super) {
@@ -22358,15 +22367,15 @@ var MonthPickerInput = /** @class */ (function (_super) {
     function MonthPickerInput(props) {
         var _this = _super.call(this, props) || this;
         _this.onCalendarChange = function (year, month) {
-            var inputValue = utils_1.valuesToMask(month, year);
+            var inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year);
             _this.setState({ inputValue: inputValue, year: year, month: month });
             _this.onChange(inputValue, year, month);
         };
         _this.onInputChange = function (e) {
             var mask = e.target.value;
             if (mask.length && mask.indexOf('_') === -1) {
-                var _a = utils_1.valuesFromMask(mask), month = _a[0], year = _a[1];
-                var inputValue = utils_1.valuesToMask(month, year);
+                var _a = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["a" /* valuesFromMask */])(mask), month = _a[0], year = _a[1];
+                var inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year);
                 _this.setState({ year: year, month: month, inputValue: inputValue });
                 _this.onChange(inputValue, year, month);
             }
@@ -22393,8 +22402,8 @@ var MonthPickerInput = /** @class */ (function (_super) {
         };
         _this.calendar = function () {
             var _a = _this.state, year = _a.year, month = _a.month;
-            return (react_1.default.createElement("div", { style: { position: 'relative' } },
-                react_1.default.createElement(calendar_1.default, { year: year, month: month, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick })));
+            return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { position: 'relative' } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick })));
         };
         _this.inputProps = function () {
             return Object.assign({}, {
@@ -22414,7 +22423,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
             var date = typeof value === 'string' ? new Date(value) : value;
             year = date.getFullYear();
             month = date.getMonth();
-            inputValue = utils_1.valuesToMask(month, year);
+            inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year);
         }
         _this.state = {
             year: year,
@@ -22428,9 +22437,9 @@ var MonthPickerInput = /** @class */ (function (_super) {
     MonthPickerInput.prototype.render = function () {
         var _this = this;
         var _a = this.state, inputValue = _a.inputValue, showCalendar = _a.showCalendar;
-        return (react_1.default.createElement("div", { ref: function (wrap) { if (wrap)
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { ref: function (wrap) { if (wrap)
                 _this.wrapper = wrap; } },
-            react_1.default.createElement(react_input_mask_1.default, __assign({ value: inputValue }, this.inputProps())),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__["a" /* default */], __assign({ value: inputValue }, this.inputProps())),
             showCalendar && this.calendar()));
     };
     ;
@@ -22439,9 +22448,9 @@ var MonthPickerInput = /** @class */ (function (_super) {
         inputProps: {}
     };
     return MonthPickerInput;
-}(react_1.Component));
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
 ;
-exports.default = MonthPickerInput;
+/* harmony default export */ __webpack_exports__["a"] = (MonthPickerInput);
 
 
 /***/ }),
@@ -22449,7 +22458,6 @@ exports.default = MonthPickerInput;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_parseMask__ = __webpack_require__(187);
@@ -22975,7 +22983,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (InputElement);
+/* harmony default export */ __webpack_exports__["a"] = (InputElement);
 
 /***/ }),
 /* 187 */
@@ -23333,21 +23341,24 @@ function getInsertStringLength(maskOptions, value, insertStr, insertPos) {
 
 /***/ }),
 /* 192 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MonthCalendar__ = __webpack_require__(193);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var MonthCalendar_1 = __webpack_require__(193);
-exports.default = MonthCalendar_1.default;
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__MonthCalendar__["a" /* default */]);
 
 
 /***/ }),
 /* 193 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OutsideClickWrapper__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Head__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants__ = __webpack_require__(196);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -23358,11 +23369,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __webpack_require__(15);
-var OutsideClickWrapper_1 = __webpack_require__(194);
-var Head_1 = __webpack_require__(195);
-var constants_1 = __webpack_require__(196);
+
+
+
+
 var MonthCalendar = /** @class */ (function (_super) {
     __extends(MonthCalendar, _super);
     function MonthCalendar(props) {
@@ -23373,7 +23383,7 @@ var MonthCalendar = /** @class */ (function (_super) {
             }
         };
         _this.selectYear = function (selectedYear) {
-            _this.setState({ selectedYear: selectedYear, currentView: constants_1.VIEW_MONTHS });
+            _this.setState({ selectedYear: selectedYear, currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */] });
             _this.onChange(selectedYear, _this.state.selectedMonth);
         };
         _this.selectMonth = function (selectedMonth) {
@@ -23390,20 +23400,20 @@ var MonthCalendar = /** @class */ (function (_super) {
         };
         _this.updateYears = function (startYear) {
             var years = Array.from({ length: 12 }, function (v, k) { return k + startYear; });
-            _this.setState({ years: years, currentView: constants_1.VIEW_YEARS });
+            _this.setState({ years: years, currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */] });
         };
         _this.isYears = function () {
-            return _this.state.currentView === constants_1.VIEW_YEARS;
+            return _this.state.currentView === __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */];
         };
         _this.renderMonths = function () {
             var selectedMonth = _this.state.selectedMonth;
-            return constants_1.MONTHS_NAMES.map(function (month, index) {
+            return __WEBPACK_IMPORTED_MODULE_3__constants__["a" /* MONTHS_NAMES */].map(function (month, index) {
                 var selectedKlass = selectedMonth === index ? 'selected_cell' : '';
-                return (react_1.default.createElement("div", { key: index, onClick: function () { return _this.selectMonth(index); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, month));
+                return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: index, onClick: function () { return _this.selectMonth(index); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, month));
             });
         };
         _this.renderYears = function () {
-            return _this.state.years.map(function (year, i) { return (react_1.default.createElement("div", { key: i, onClick: function () { return _this.selectYear(year); }, className: "col_mp span_1_of_3_mp" }, year)); });
+            return _this.state.years.map(function (year, i) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i, onClick: function () { return _this.selectYear(year); }, className: "col_mp span_1_of_3_mp" }, year)); });
         };
         var _a = _this.props, year = _a.year, month = _a.month;
         var startYear = _this.props.startYear || new Date().getFullYear() - 6;
@@ -23411,7 +23421,7 @@ var MonthCalendar = /** @class */ (function (_super) {
             years: Array.from({ length: 12 }, function (v, k) { return k + startYear; }),
             selectedYear: year,
             selectedMonth: month,
-            currentView: month ? constants_1.VIEW_MONTHS : constants_1.VIEW_YEARS,
+            currentView: month ? __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */] : __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */],
         };
         return _this;
     }
@@ -23424,31 +23434,31 @@ var MonthCalendar = /** @class */ (function (_super) {
             this.setState({
                 selectedYear: year,
                 selectedMonth: month,
-                currentView: constants_1.VIEW_MONTHS
+                currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */]
             });
         }
     };
     MonthCalendar.prototype.render = function () {
         var _a = this.state, selectedYear = _a.selectedYear, selectedMonth = _a.selectedMonth;
-        return (react_1.default.createElement(OutsideClickWrapper_1.default, { onOutsideClick: this.props.onOutsideClick, className: "calendar-container" },
-            react_1.default.createElement(Head_1.default, { year: selectedYear, month: selectedMonth ? selectedMonth + 1 : null, onPrev: this.previous, onNext: this.next }),
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__OutsideClickWrapper__["a" /* default */], { onOutsideClick: this.props.onOutsideClick, className: "calendar-container" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: selectedMonth ? selectedMonth + 1 : null, onPrev: this.previous, onNext: this.next }),
             this.isYears() ? this.renderYears() : this.renderMonths()));
     };
     return MonthCalendar;
-}(react_1.Component));
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
 ;
-exports.default = MonthCalendar;
+/* harmony default export */ __webpack_exports__["a"] = (MonthCalendar);
 
 
 /***/ }),
 /* 194 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 // @flow
-var react_1 = __webpack_require__(15);
+
 ;
 var OutsideClickWrapper = function (_a) {
     var onOutsideClick = _a.onOutsideClick, _b = _a.className, className = _b === void 0 ? '' : _b, children = _a.children;
@@ -23467,17 +23477,18 @@ var OutsideClickWrapper = function (_a) {
             window.removeEventListener('click', handleOutsideClick, false);
         }
     };
-    return (react_1.default.createElement("div", { ref: wrapperMounted, className: className }, children));
+    return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { ref: wrapperMounted, className: className }, children));
 };
-exports.default = OutsideClickWrapper;
+/* harmony default export */ __webpack_exports__["a"] = (OutsideClickWrapper);
 
 
 /***/ }),
 /* 195 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -23488,8 +23499,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __webpack_require__(15);
+
 var Head = /** @class */ (function (_super) {
     __extends(Head, _super);
     function Head() {
@@ -23510,24 +23520,25 @@ var Head = /** @class */ (function (_super) {
     };
     ;
     Head.prototype.render = function () {
-        return (react_1.default.createElement("div", { className: "section_mp group_mp" },
-            react_1.default.createElement("div", { className: "col_mp span_1_of_3_mp arrows_mp", onClick: this.props.onPrev }, "<"),
-            react_1.default.createElement("div", { className: "col_mp span_1_of_3_mp selected_date_mp" }, this.selectedValue()),
-            react_1.default.createElement("div", { className: "col_mp span_1_of_3_mp arrows_mp", onClick: this.props.onNext }, ">")));
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "section_mp group_mp" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col_mp span_1_of_3_mp arrows_mp", onClick: this.props.onPrev }, "<"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col_mp span_1_of_3_mp selected_date_mp" }, this.selectedValue()),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col_mp span_1_of_3_mp arrows_mp", onClick: this.props.onNext }, ">")));
     };
     return Head;
-}(react_1.PureComponent));
-exports.default = Head;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"]));
+/* harmony default export */ __webpack_exports__["a"] = (Head);
 
 
 /***/ }),
 /* 196 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MONTHS_NAMES = [
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MONTHS_NAMES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return VIEW_YEARS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return VIEW_MONTHS; });
+var MONTHS_NAMES = [
     "Jan",
     "Feb",
     "Mar",
@@ -23541,24 +23552,24 @@ exports.MONTHS_NAMES = [
     "Nov",
     "Dec"
 ];
-exports.VIEW_YEARS = 'YEARS';
-exports.VIEW_MONTHS = 'MONTHS';
+var VIEW_YEARS = 'YEARS';
+var VIEW_MONTHS = 'MONTHS';
 
 
 /***/ }),
 /* 197 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.valuesToMask = function (month, year) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return valuesToMask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return valuesFromMask; });
+var valuesToMask = function (month, year) {
     var monthNum = month + 1;
     var monthVal = monthNum < 10 ? '0' + monthNum : monthNum;
     var yearVal = year.toString().slice(2);
     return monthVal + '/' + yearVal;
 };
-exports.valuesFromMask = function (mask) {
+var valuesFromMask = function (mask) {
     var _a = mask.split('/'), monthVal = _a[0], yearVal = _a[1];
     var rawMonth = parseInt(monthVal);
     var monthNum = rawMonth > 12 ? 12 : (rawMonth == 0 ? 1 : rawMonth);

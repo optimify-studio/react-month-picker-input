@@ -24,7 +24,13 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader?' + JSON.stringify({
+          configFile: 'tsbuild.json'
+        }),
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/i,
         use: ExtractTextPlugin.extract({
