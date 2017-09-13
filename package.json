@@ -43,6 +43,7 @@
     "build": "webpack",
     "build:demo": "webpack --config webpack.demo.config.js",
     "compile": "npm run build && npm run build:demo",
-    "release": "standard-version"
+    "release": "standard-version",
+    "serve": "webpack-dev-server --config webpack.demo.config.js"
   }
 }

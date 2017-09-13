@@ -6,7 +6,8 @@ import Head from './Head';
 import { MONTHS_NAMES, VIEW_MONTHS, VIEW_YEARS } from './constants';
 
 export interface IProps {
-  value?: null|Date,
+  year: null|number,
+  month: null|number,
   startYear?: number,
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
@@ -23,31 +24,26 @@ class MonthCalendar extends Component<IProps, IState> {
   constructor(props: IProps){
     super(props);
 
-    const { value } = this.props;
+    const { year, month } = this.props;
 
-    const selectedYear = value ? value.getFullYear() : null;
-    const selectedMonth = value ? value.getMonth() : null;
-
-    const startYear = selectedYear || this.props.startYear || new Date().getFullYear() - 6;
+    const startYear = this.props.startYear || new Date().getFullYear() - 6;
 
     this.state = {
       years: Array.from({length: 12}, (v, k) => k + startYear),
-      selectedYear,
-      selectedMonth,
-      currentView: selectedMonth ? VIEW_MONTHS : VIEW_YEARS,
+      selectedYear: year,
+      selectedMonth: month,
+      currentView: month ? VIEW_MONTHS : VIEW_YEARS,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { value } = nextProps;
+    const { year, month } = nextProps;
+    const { selectedYear, selectedMonth } = this.state;
 
-    if (value && value !== this.props.value) {
-      const selectedYear = value.getFullYear();
-      const selectedMonth = value.getMonth();
-
+    if (year && month && (year !== selectedYear || month !== selectedYear)) {
       this.setState({
-        selectedYear,
-        selectedMonth,
+        selectedYear: year,
+        selectedMonth: month,
         currentView: VIEW_MONTHS
       });
     }
@@ -55,7 +51,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
   onChange = (selectedYear, selectedMonth): void => {
     if (selectedYear !== null && selectedMonth !== null) {
-      this.props.onChange(selectedYear, selectedMonth + 1);
+      this.props.onChange(selectedYear, selectedMonth);
     }
   }
 
@@ -98,7 +94,7 @@ class MonthCalendar extends Component<IProps, IState> {
       return (
         <div
           key={index}
-          onClick={()=>{this.selectMonth(index)}}
+          onClick={() => this.selectMonth(index)}
           className={`col_mp span_1_of_3_mp ${selectedKlass}`}
         >{month}</div>
       )
@@ -109,7 +105,7 @@ class MonthCalendar extends Component<IProps, IState> {
     return this.state.years.map((year, i) => (
       <div
         key={i}
-        onClick={()=>{this.selectYear(year)}}
+        onClick={() => this.selectYear(year)}
         className="col_mp span_1_of_3_mp"
       >{year}</div>
     ));

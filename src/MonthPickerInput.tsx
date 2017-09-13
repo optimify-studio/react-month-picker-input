@@ -19,7 +19,8 @@ export interface IProps {
 }
 
 export interface IState {
-  value: null|Date,
+  year: null|number,
+  month: null|number,
   inputValue: string,
   showCalendar: boolean,
 }
@@ -36,23 +37,26 @@ class MonthPickerInput extends Component<IProps, IState> {
   constructor(props) {
     super(props);
     const { value } = this.props;
-    let date: null|Date = null, inputValue = '';
+    let inputValue = '', year: null|number = null, month: null|number = null;
 
     if (value) {
-      date = typeof value === 'string' ? new Date(value) : value;
-      inputValue = this.maskedInputValue(date.getFullYear(), date.getMonth() + 1);
+      const date = typeof value === 'string' ? new Date(value) : value;
+      year = date.getFullYear();
+      month = date.getMonth();
+      inputValue = this.maskedInputValue(year, month + 1);
     }
 
     this.state = {
-      value: date,
+      year,
+      month,
       inputValue,
       showCalendar: false
     }
   }
 
   onCalendarChange = (year, month): void => {
-    const inputValue = this.maskedInputValue(year, month);
-    this.setState({ inputValue });
+    const inputValue = this.maskedInputValue(year, month + 1);
+    this.setState({ inputValue, year, month });
     this.onChange(inputValue, year, month);
   }
 
@@ -66,12 +70,11 @@ class MonthPickerInput extends Component<IProps, IState> {
     const inputValue = e.target.value;
 
     if (inputValue.length && inputValue.indexOf('_') === -1) {
-      const [month, year] = inputValue.split('/');
-      const monthVal = parseInt(month) - 1;
-      const yearVal = parseInt(year);
-      const value = new Date(yearVal, monthVal, 1);
-      this.setState({ value, inputValue });
-      this.onChange(inputValue, yearVal, monthVal);
+      const [monthVal, yearVal] = inputValue.split('/');
+      const month = parseInt(monthVal) - 1;
+      const year = parseInt(yearVal);
+      this.setState({ year, month, inputValue });
+      this.onChange(inputValue, year, month);
     } else this.setState({ inputValue });
   };
 
@@ -98,10 +101,12 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   calendar = (): JSX.Element => {
+    const { year, month } = this.state;
     return (
       <div style={{ position: 'relative' }}>
         <MonthCalendar
-          value={this.state.value}
+          year={year}
+          month={month}
           onChange={this.onCalendarChange}
           onOutsideClick={this.onCalendarOutsideClick}
         />
