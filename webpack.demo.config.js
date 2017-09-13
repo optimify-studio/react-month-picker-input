@@ -13,8 +13,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve('./docs/'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    filename: 'bundle.js'
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
