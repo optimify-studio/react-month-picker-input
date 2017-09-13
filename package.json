@@ -1,6 +1,6 @@
 {
   "name": "react-month-picker-input",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple month picker with calendar and input field with mask.",
   "main": "./dist/react-month-picker-input.js",
   "repository": {
@@ -48,7 +48,7 @@
     "build": "webpack",
     "build:demo": "webpack --config webpack.demo.config.js",
     "compile": "npm run build && npm run build:demo",
-    "release": "npm run test && npm run build && npm run standard-version",
+    "release": "standard-version",
     "serve": "webpack-dev-server --config webpack.demo.config.js"
   }
 }
