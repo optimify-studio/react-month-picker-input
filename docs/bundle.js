@@ -23412,7 +23412,11 @@ var MonthCalendar = /** @class */ (function (_super) {
             });
         };
         _this.renderYears = function () {
-            return _this.state.years.map(function (year, i) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i, onClick: function () { return _this.selectYear(year); }, className: "col_mp span_1_of_3_mp" }, year)); });
+            var selectedYear = _this.state.selectedYear;
+            return _this.state.years.map(function (year, i) {
+                var selectedKlass = selectedYear === year ? 'selected_cell' : '';
+                return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i, onClick: function () { return _this.selectYear(year); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, year));
+            });
         };
         var _a = _this.props, year = _a.year, month = _a.month;
         var startYear = _this.props.startYear || new Date().getFullYear() - 6;
@@ -23429,7 +23433,7 @@ var MonthCalendar = /** @class */ (function (_super) {
         var _a = this.state, selectedYear = _a.selectedYear, selectedMonth = _a.selectedMonth;
         if (typeof year == 'number' &&
             typeof month == 'number' &&
-            (year !== selectedYear || month !== selectedYear)) {
+            (year !== selectedYear || month !== selectedMonth)) {
             this.setState({
                 selectedYear: year,
                 selectedMonth: month,
@@ -23438,9 +23442,10 @@ var MonthCalendar = /** @class */ (function (_super) {
         }
     };
     MonthCalendar.prototype.render = function () {
+        var _this = this;
         var _a = this.state, selectedYear = _a.selectedYear, selectedMonth = _a.selectedMonth;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__OutsideClickWrapper__["a" /* default */], { onOutsideClick: this.props.onOutsideClick, className: "calendar-container" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: selectedMonth ? selectedMonth + 1 : undefined, onPrev: this.previous, onNext: this.next }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: selectedMonth ? selectedMonth + 1 : undefined, onValueClick: function () { return _this.setState({ currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */] }); }, onPrev: this.previous, onNext: this.next }),
             this.isYears() ? this.renderYears() : this.renderMonths()));
     };
     return MonthCalendar;
@@ -23521,7 +23526,7 @@ var Head = /** @class */ (function (_super) {
     Head.prototype.render = function () {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "section_mp group_mp" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col_mp span_1_of_3_mp arrows_mp", onClick: this.props.onPrev }, "<"),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col_mp span_1_of_3_mp selected_date_mp" }, this.selectedValue()),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col_mp span_1_of_3_mp selected_date_mp", onClick: this.props.onValueClick }, this.selectedValue()),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col_mp span_1_of_3_mp arrows_mp", onClick: this.props.onNext }, ">")));
     };
     return Head;

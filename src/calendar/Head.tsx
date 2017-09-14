@@ -5,6 +5,7 @@ export interface IProps {
   year: void|number,
   onNext: () => any,
   onPrev: () => any,
+  onValueClick: () => any,
 }
 
 class Head extends PureComponent<IProps> {
@@ -27,7 +28,9 @@ class Head extends PureComponent<IProps> {
         <div className="col_mp span_1_of_3_mp arrows_mp"
           onClick={this.props.onPrev}>&lt;</div>
 
-        <div className="col_mp span_1_of_3_mp selected_date_mp">
+        <div className="col_mp span_1_of_3_mp selected_date_mp"
+          onClick={this.props.onValueClick}
+        >
           {this.selectedValue()}
         </div>
 

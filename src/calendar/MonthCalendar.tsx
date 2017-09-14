@@ -42,7 +42,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
     if (typeof year == 'number' &&
       typeof month == 'number' &&
-      (year !== selectedYear || month !== selectedYear)
+      (year !== selectedYear || month !== selectedMonth)
     ) {
       this.setState({
         selectedYear: year,
@@ -105,13 +105,19 @@ class MonthCalendar extends Component<IProps, IState> {
   };
 
   renderYears = (): JSX.Element[] => {
-    return this.state.years.map((year, i) => (
-      <div
-        key={i}
-        onClick={() => this.selectYear(year)}
-        className="col_mp span_1_of_3_mp"
-      >{year}</div>
-    ));
+    const { selectedYear } = this.state;
+
+    return this.state.years.map((year, i) => {
+      const selectedKlass = selectedYear === year ? 'selected_cell' : '';
+
+      return (
+        <div
+          key={i}
+          onClick={() => this.selectYear(year)}
+          className={`col_mp span_1_of_3_mp ${selectedKlass}`}
+        >{year}</div>
+      );
+    });
   }
 
   render(): JSX.Element {
@@ -125,6 +131,7 @@ class MonthCalendar extends Component<IProps, IState> {
         <Head
           year={selectedYear}
           month={selectedMonth ? selectedMonth + 1 : undefined}
+          onValueClick={() => this.setState({ currentView: VIEW_YEARS })}
           onPrev={this.previous}
           onNext={this.next} />
 
