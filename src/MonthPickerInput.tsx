@@ -11,7 +11,8 @@ import './styles/index.css';
 type OnChange = (maskedValue: string, year: number, month: number) => any;
 
 export interface IProps {
-  value?: void|string|Date,
+  year?: number,
+  month?: number,
   inputProps?: {
     name?: string,
     id?: string,
@@ -20,8 +21,8 @@ export interface IProps {
 };
 
 export interface IState {
-  year: null|number,
-  month: null|number,
+  year: void|number,
+  month: void|number,
   inputValue: string,
   showCalendar: boolean,
 };
@@ -31,19 +32,15 @@ class MonthPickerInput extends Component<IProps, IState> {
   input: { input: Element };
 
   public static defaultProps: Partial<IProps> = {
-    value: undefined,
     inputProps: {}
   };
 
   constructor(props) {
     super(props);
-    const { value } = this.props;
-    let inputValue = '', year: null|number = null, month: null|number = null;
+    const { year, month } = this.props;
+    let inputValue = '';
 
-    if (value) {
-      const date = typeof value === 'string' ? new Date(value) : value;
-      year = date.getFullYear();
-      month = date.getMonth();
+    if (typeof year == 'number' && typeof month == 'number') {
       inputValue = valuesToMask(month, year);
     }
 

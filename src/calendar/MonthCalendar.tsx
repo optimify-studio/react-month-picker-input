@@ -6,8 +6,8 @@ import Head from './Head';
 import { MONTHS_NAMES, VIEW_MONTHS, VIEW_YEARS } from './constants';
 
 export interface IProps {
-  year: null|number,
-  month: null|number,
+  year: void|number,
+  month: void|number,
   startYear?: number,
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
@@ -15,8 +15,8 @@ export interface IProps {
 
 export interface IState {
   years: Array<number>,
-  selectedYear: null|number,
-  selectedMonth: null|number,
+  selectedYear: void|number,
+  selectedMonth: void|number,
   currentView: string,
 }
 
@@ -32,7 +32,7 @@ class MonthCalendar extends Component<IProps, IState> {
       years: Array.from({length: 12}, (v, k) => k + startYear),
       selectedYear: year,
       selectedMonth: month,
-      currentView: month ? VIEW_MONTHS : VIEW_YEARS,
+      currentView: year ? VIEW_MONTHS : VIEW_YEARS,
     };
   }
 
@@ -53,7 +53,7 @@ class MonthCalendar extends Component<IProps, IState> {
   }
 
   onChange = (selectedYear, selectedMonth): void => {
-    if (selectedYear !== null && selectedMonth !== null) {
+    if (typeof selectedYear == 'number' && typeof selectedMonth == 'number') {
       this.props.onChange(selectedYear, selectedMonth);
     }
   }
@@ -124,7 +124,7 @@ class MonthCalendar extends Component<IProps, IState> {
       >
         <Head
           year={selectedYear}
-          month={selectedMonth ? selectedMonth + 1 : null}
+          month={selectedMonth ? selectedMonth + 1 : undefined}
           onPrev={this.previous}
           onNext={this.next} />
 

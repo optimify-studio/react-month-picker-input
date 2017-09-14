@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 
 export interface IProps {
-  month: null|number,
-  year: null|number,
+  month: void|number,
+  year: void|number,
   onNext: () => any,
   onPrev: () => any,
 }
@@ -11,9 +11,9 @@ class Head extends PureComponent<IProps> {
   selectedValue(): string|number {
     const { month, year } = this.props;
 
-    if (year == null) {
+    if (typeof year != 'number') {
       return '';
-    } else if (month == null) {
+    } else if (typeof month != 'number') {
       return year;
     } else {
       const monthVal = month < 10 ? '0' + month : month;
