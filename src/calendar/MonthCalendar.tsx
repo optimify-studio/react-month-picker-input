@@ -8,6 +8,7 @@ import { MONTHS_NAMES, VIEW_MONTHS, VIEW_YEARS } from './constants';
 export interface IProps {
   year: void|number,
   month: void|number,
+  lang: string,
   startYear?: number,
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
@@ -91,7 +92,7 @@ class MonthCalendar extends Component<IProps, IState> {
   renderMonths = (): JSX.Element[] => {
     const { selectedMonth } = this.state;
 
-    return MONTHS_NAMES.map((month, index) => {
+    return MONTHS_NAMES[this.props.lang].map((month, index) => {
       const selectedKlass = selectedMonth === index ? 'selected_cell' : '';
 
       return (
@@ -131,6 +132,7 @@ class MonthCalendar extends Component<IProps, IState> {
         <Head
           year={selectedYear}
           month={selectedMonth ? selectedMonth + 1 : undefined}
+          lang={this.props.lang}
           onValueClick={() => this.setState({ currentView: VIEW_YEARS })}
           onPrev={this.previous}
           onNext={this.next} />
