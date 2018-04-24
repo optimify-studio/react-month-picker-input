@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import InputMask from 'react-input-mask';
 
-const DATE_FORMAT = 'MM/YY';
+const DATE_FORMAT = {
+  "default": 'MM/YY',
+  "ja": 'YY/MM'
+}
 
 import MonthCalendar from './calendar';
 import { valuesToMask, valuesFromMask } from './utils';
@@ -13,6 +16,7 @@ type OnChange = (maskedValue: string, year: number, month: number) => any;
 export interface IProps {
   year?: number,
   month?: number,
+  lang?: string,
   inputProps?: {
     name?: string,
     id?: string,
@@ -41,19 +45,19 @@ class MonthPickerInput extends Component<IProps, IState> {
     let inputValue = '';
 
     if (typeof year == 'number' && typeof month == 'number') {
-      inputValue = valuesToMask(month, year);
+      inputValue = valuesToMask(month, year, this.props.lang);
     }
 
     this.state = {
       year,
       month,
       inputValue,
-      showCalendar: false
+      showCalendar: false,
     }
   };
 
   onCalendarChange = (year, month): void => {
-    const inputValue = valuesToMask(month, year);
+    const inputValue = valuesToMask(month, year, this.props.lang);
     this.setState({ inputValue, year, month });
     this.onChange(inputValue, year, month);
   };
@@ -63,7 +67,7 @@ class MonthPickerInput extends Component<IProps, IState> {
 
     if (mask.length && mask.indexOf('_') === -1) {
       const [month, year] = valuesFromMask(mask);
-      const inputValue = valuesToMask(month, year);
+      const inputValue = valuesToMask(month, year, this.props.lang);
       this.setState({ year, month, inputValue });
       this.onChange(inputValue, year, month);
     } else this.setState({ inputValue: mask });
@@ -93,11 +97,13 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   calendar = (): JSX.Element => {
     const { year, month } = this.state;
+    let lang = this.props.lang ? this.props.lang : 'default';
     return (
       <div style={{ position: 'relative' }}>
         <MonthCalendar
           year={year}
           month={month}
+          lang={lang}
           onChange={this.onCalendarChange}
           onOutsideClick={this.onCalendarOutsideClick}
         />
@@ -106,10 +112,14 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   inputProps = (): object => {
+    let dateFormat = DATE_FORMAT["default"];
+    if (this.props.lang == "ja") {
+      dateFormat = DATE_FORMAT["ja"];
+    }
     return Object.assign({}, {
       ref: input => { if(input) this.input = input; },
       mask: "99/99",
-      placeholder: DATE_FORMAT,
+      placeholder: dateFormat,
       type: 'text',
       onBlur: this.onInputBlur,
       onFocus: this.onInputFocus,

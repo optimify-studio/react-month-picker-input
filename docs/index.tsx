@@ -25,6 +25,15 @@ ReactDOM.render(
           month={new Date().getMonth()}
           inputProps={{id: "ex-2", name: "ex-2"}} />
       </label>
+
+      <label htmlFor="ex-3">
+        Japanese format
+        <MonthPickerInput
+          year={new Date().getFullYear()}
+          month={new Date().getMonth()}
+          lang="ja"
+          inputProps={{id: "ex-3", name: "ex-3"}} />
+      </label>
     </div>
   ),
   document.getElementById('examples')

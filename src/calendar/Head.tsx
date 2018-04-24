@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 export interface IProps {
   month: void|number,
   year: void|number,
+  lang: string,
   onNext: () => any,
   onPrev: () => any,
   onValueClick: () => any,
@@ -18,6 +19,9 @@ class Head extends PureComponent<IProps> {
       return year;
     } else {
       const monthVal = month < 10 ? '0' + month : month;
+      if (this.props.lang == "ja") {
+        return year + '/' + monthVal;
+      }
       return monthVal + '/' + year;
     }
   };

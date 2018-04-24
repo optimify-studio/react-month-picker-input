@@ -11,6 +11,11 @@ describe('valuesToMask', () => {
     const result = valuesToMask(1, 2012);
     expect(result).to.equal('02/12');
   });
+
+  it('returns ja format value', () => {
+    const result = valuesToMask(0, 2018, 'ja');
+    expect(result).to.equal('18/01');
+  });
 });
 
 describe('valuesFromMask', () => {
