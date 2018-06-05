@@ -22,6 +22,7 @@ export interface IProps {
     id?: string,
   },
   onChange?: OnChange,
+  closeOnSelect?: boolean
 };
 
 export interface IState {
@@ -36,7 +37,8 @@ class MonthPickerInput extends Component<IProps, IState> {
   input: { input: Element };
 
   public static defaultProps: Partial<IProps> = {
-    inputProps: {}
+    inputProps: {},
+    closeOnSelect: false
   };
 
   constructor(props) {
@@ -58,7 +60,12 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   onCalendarChange = (year, month): void => {
     const inputValue = valuesToMask(month, year, this.props.lang);
-    this.setState({ inputValue, year, month });
+    this.setState({
+      inputValue,
+      year,
+      month,
+      showCalendar: !this.props.closeOnSelect
+    });
     this.onChange(inputValue, year, month);
   };
 

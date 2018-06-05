@@ -9734,7 +9734,13 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render((__WEBPACK_IMPORTED_MOD
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { year: new Date().getFullYear(), inputProps: { id: "ex-1", name: "ex-1" } })),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { htmlFor: "ex-2" },
         "With default year and month",
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { year: new Date().getFullYear(), month: new Date().getMonth(), inputProps: { id: "ex-2", name: "ex-2" } })))), document.getElementById('examples'));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { year: new Date().getFullYear(), month: new Date().getMonth(), inputProps: { id: "ex-2", name: "ex-2" } })),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { htmlFor: "ex-3" },
+        "Japanese format",
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { year: new Date().getFullYear(), month: new Date().getMonth(), lang: "ja", inputProps: { id: "ex-3", name: "ex-3" } })),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", { htmlFor: "ex-4" },
+        "Close on month select",
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { closeOnSelect: true, inputProps: { id: "ex-3", name: "ex-3" } })))), document.getElementById('examples'));
 
 
 /***/ }),
@@ -22359,7 +22365,10 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 
 
-var DATE_FORMAT = 'MM/YY';
+var DATE_FORMAT = {
+    "default": 'MM/YY',
+    "ja": 'YY/MM'
+};
 
 
 
@@ -22370,15 +22379,20 @@ var MonthPickerInput = /** @class */ (function (_super) {
     function MonthPickerInput(props) {
         var _this = _super.call(this, props) || this;
         _this.onCalendarChange = function (year, month) {
-            var inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year);
-            _this.setState({ inputValue: inputValue, year: year, month: month });
+            var inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year, _this.props.lang);
+            _this.setState({
+                inputValue: inputValue,
+                year: year,
+                month: month,
+                showCalendar: !_this.props.closeOnSelect
+            });
             _this.onChange(inputValue, year, month);
         };
         _this.onInputChange = function (e) {
             var mask = e.target.value;
             if (mask.length && mask.indexOf('_') === -1) {
                 var _a = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["a" /* valuesFromMask */])(mask), month = _a[0], year = _a[1];
-                var inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year);
+                var inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year, _this.props.lang);
                 _this.setState({ year: year, month: month, inputValue: inputValue });
                 _this.onChange(inputValue, year, month);
             }
@@ -22405,15 +22419,20 @@ var MonthPickerInput = /** @class */ (function (_super) {
         };
         _this.calendar = function () {
             var _a = _this.state, year = _a.year, month = _a.month;
+            var lang = _this.props.lang ? _this.props.lang : 'default';
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { position: 'relative' } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick })));
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, lang: lang, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick })));
         };
         _this.inputProps = function () {
+            var dateFormat = DATE_FORMAT["default"];
+            if (_this.props.lang == "ja") {
+                dateFormat = DATE_FORMAT["ja"];
+            }
             return Object.assign({}, {
                 ref: function (input) { if (input)
                     _this.input = input; },
                 mask: "99/99",
-                placeholder: DATE_FORMAT,
+                placeholder: dateFormat,
                 type: 'text',
                 onBlur: _this.onInputBlur,
                 onFocus: _this.onInputFocus,
@@ -22423,13 +22442,13 @@ var MonthPickerInput = /** @class */ (function (_super) {
         var _a = _this.props, year = _a.year, month = _a.month;
         var inputValue = '';
         if (typeof year == 'number' && typeof month == 'number') {
-            inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year);
+            inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesToMask */])(month, year, _this.props.lang);
         }
         _this.state = {
             year: year,
             month: month,
             inputValue: inputValue,
-            showCalendar: false
+            showCalendar: false,
         };
         return _this;
     }
@@ -22444,7 +22463,8 @@ var MonthPickerInput = /** @class */ (function (_super) {
     };
     ;
     MonthPickerInput.defaultProps = {
-        inputProps: {}
+        inputProps: {},
+        closeOnSelect: false
     };
     return MonthPickerInput;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -23406,7 +23426,7 @@ var MonthCalendar = /** @class */ (function (_super) {
         };
         _this.renderMonths = function () {
             var selectedMonth = _this.state.selectedMonth;
-            return __WEBPACK_IMPORTED_MODULE_3__constants__["a" /* MONTHS_NAMES */].map(function (month, index) {
+            return __WEBPACK_IMPORTED_MODULE_3__constants__["a" /* MONTHS_NAMES */][_this.props.lang].map(function (month, index) {
                 var selectedKlass = selectedMonth === index ? 'selected_cell' : '';
                 return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: index, onClick: function () { return _this.selectMonth(index); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, month));
             });
@@ -23445,7 +23465,7 @@ var MonthCalendar = /** @class */ (function (_super) {
         var _this = this;
         var _a = this.state, selectedYear = _a.selectedYear, selectedMonth = _a.selectedMonth;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__OutsideClickWrapper__["a" /* default */], { onOutsideClick: this.props.onOutsideClick, className: "calendar-container" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: selectedMonth ? selectedMonth + 1 : undefined, onValueClick: function () { return _this.setState({ currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */] }); }, onPrev: this.previous, onNext: this.next }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: selectedMonth ? selectedMonth + 1 : undefined, lang: this.props.lang, onValueClick: function () { return _this.setState({ currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */] }); }, onPrev: this.previous, onNext: this.next }),
             this.isYears() ? this.renderYears() : this.renderMonths()));
     };
     return MonthCalendar;
@@ -23519,6 +23539,9 @@ var Head = /** @class */ (function (_super) {
         }
         else {
             var monthVal = month < 10 ? '0' + month : month;
+            if (this.props.lang == "ja") {
+                return year + '/' + monthVal;
+            }
             return monthVal + '/' + year;
         }
     };
@@ -23542,20 +23565,36 @@ var Head = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MONTHS_NAMES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return VIEW_YEARS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return VIEW_MONTHS; });
-var MONTHS_NAMES = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-];
+var MONTHS_NAMES = {
+    default: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    ],
+    ja: [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+    ]
+};
 var VIEW_YEARS = 'YEARS';
 var VIEW_MONTHS = 'MONTHS';
 
@@ -23567,10 +23606,13 @@ var VIEW_MONTHS = 'MONTHS';
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return valuesToMask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return valuesFromMask; });
-var valuesToMask = function (month, year) {
+var valuesToMask = function (month, year, lang) {
     var monthNum = month + 1;
     var monthVal = monthNum < 10 ? '0' + monthNum : monthNum;
     var yearVal = year.toString().slice(2);
+    if (lang == "ja") {
+        return yearVal + '/' + monthVal;
+    }
     return monthVal + '/' + yearVal;
 };
 var valuesFromMask = function (mask) {

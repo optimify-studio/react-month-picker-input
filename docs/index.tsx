@@ -34,6 +34,13 @@ ReactDOM.render(
           lang="ja"
           inputProps={{id: "ex-3", name: "ex-3"}} />
       </label>
+
+      <label htmlFor="ex-4">
+        Close on month select
+        <MonthPickerInput
+          closeOnSelect={true}
+          inputProps={{id: "ex-3", name: "ex-3"}} />
+      </label>
     </div>
   ),
   document.getElementById('examples')

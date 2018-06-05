@@ -15,6 +15,7 @@ Live demo: [slavakisel.github.io/react-month-picker-input](https://slavakisel.gi
 | month | number (0..11) | void | Preselect month in calendar. If both year and month are specified then input field will be also prepopulated |
 | inputProps | object | empty object | Input field props, only `id` and `name` are supported |
 | onChange | Function: (maskedValue: string, year: number, month: number) => any | - | onChange callback, receives `maskedValue`, `year` and `month` (begins with 0) as arguments |
+| closeOnSelect | boolean | false | Close calendar on month select |
 
 ## Installation
 
