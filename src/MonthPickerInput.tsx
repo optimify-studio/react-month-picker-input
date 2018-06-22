@@ -144,7 +144,8 @@ class MonthPickerInput extends Component<IProps, IState> {
           {...this.inputProps()}
         />
 
-        { showCalendar && this.calendar() }
+        { this.calendar() }
+        {/* { showCalendar && this.calendar() } */}
       </div>
     );
   };
