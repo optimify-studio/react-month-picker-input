@@ -1,4 +1,4 @@
-enum DateFormat {
+export enum DateFormat {
   'MM/YY',
   'YY/MM'
 };

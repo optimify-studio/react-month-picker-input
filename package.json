@@ -26,6 +26,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "gulp-concat": "^2.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "jsx-to-string": "^1.4.0",
     "mocha": "^3.5.3",
     "path": "^0.12.7",
     "standard-version": "^4.2.0",

@@ -1,46 +1,129 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import jsxToString from 'jsx-to-string';
 
 import MonthPickerInput from 'react-month-picker-input';
+import { MonthFormat } from 'react-month-picker-input';
 
 ReactDOM.render(
   (
     <div>
-      <label htmlFor="ex-0">
-        Without default value
-        <MonthPickerInput inputProps={{id: "ex-0", name: "ex-0"}} />
-      </label>
+      <div className="example">
+        <h2>Without props</h2>
 
-      <label htmlFor="ex-1">
-        With only default year
+        <pre>{ jsxToString(<MonthPickerInput />) }</pre>
+
+        <MonthPickerInput inputProps={{id: "ex-0", name: "ex-0"}} />
+      </div>
+
+      <div className="example">
+        <h2>With only default year</h2>
+
+        <pre>
+          {
+            jsxToString(
+              <MonthPickerInput
+                year={new Date().getFullYear()} />
+            )
+          }
+        </pre>
+
         <MonthPickerInput
           year={new Date().getFullYear()}
           inputProps={{id: "ex-1", name: "ex-1"}} />
-      </label>
+      </div>
 
-      <label htmlFor="ex-2">
-        With default year and month
+      <div className="example">
+        <h2>With default year and month</h2>
+
+        <pre>
+          {
+            jsxToString(
+              <MonthPickerInput
+                year={new Date().getFullYear()}
+                month={new Date().getMonth()} />
+            )
+          }
+        </pre>
+
         <MonthPickerInput
           year={new Date().getFullYear()}
           month={new Date().getMonth()}
           inputProps={{id: "ex-2", name: "ex-2"}} />
-      </label>
+      </div>
 
-      <label htmlFor="ex-3">
-        Japanese format
-        <MonthPickerInput
-          year={new Date().getFullYear()}
-          month={new Date().getMonth()}
-          lang="ja"
-          inputProps={{id: "ex-3", name: "ex-3"}} />
-      </label>
 
-      <label htmlFor="ex-4">
-        Close on month select
+      <div className="example">
+        <h2>Close on month select</h2>
+
+        <pre>
+          { jsxToString(<MonthPickerInput closeOnSelect={true} />) }
+        </pre>
+
         <MonthPickerInput
           closeOnSelect={true}
           inputProps={{id: "ex-3", name: "ex-3"}} />
-      </label>
+      </div>
+
+      <div className="example">
+        <h2>Custom translations</h2>
+
+        <pre>
+        {
+          jsxToString(
+            <MonthPickerInput
+              lang='hu'
+              i18n={{
+                monthFormat: MonthFormat.LONG,
+                dateFormat: {
+                  hu: 'MM/YY'
+                },
+                monthNames: {
+                  hu: [
+                    'Január',
+                    'Február',
+                    'Március',
+                    'Aprilis',
+                    'Május',
+                    'Junius',
+                    'Julius',
+                    'Augusztus',
+                    'Szeptember',
+                    'Október',
+                    'November',
+                    'December'
+                  ]
+                }
+              }} />
+          )
+        }</pre>
+
+        <MonthPickerInput
+          lang="hu"
+          i18n={{
+            monthFormat: MonthFormat.LONG,
+            dateFormat: {
+              hu: 'MM/YY'
+            },
+            monthNames: {
+              hu: [
+                'Január',
+                'Február',
+                'Március',
+                'Aprilis',
+                'Május',
+                'Junius',
+                'Julius',
+                'Augusztus',
+                'Szeptember',
+                'Október',
+                'November',
+                'December'
+              ]
+            }
+          }}
+          inputProps={{id: "ex-4", name: "ex-4"}} />
+      </div>
     </div>
   ),
   document.getElementById('examples')

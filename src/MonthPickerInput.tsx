@@ -148,4 +148,6 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 };
 
+export { DateFormat, MonthFormat } from './i18n';
+
 export default MonthPickerInput;
