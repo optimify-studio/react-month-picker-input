@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import InputMask from 'react-input-mask';
 
-const DATE_FORMAT = {
-  "default": 'MM/YY',
-  "ja": 'YY/MM'
-}
-
 import MonthCalendar from './calendar';
 import { valuesToMask, valuesFromMask } from './utils';
+
+import { II18n } from './i18n';
+import Translator from './Translator';
 
 import './styles/index.css';
 
@@ -16,13 +14,14 @@ type OnChange = (maskedValue: string, year: number, month: number) => any;
 export interface IProps {
   year?: number,
   month?: number,
-  lang?: string,
   inputProps?: {
     name?: string,
     id?: string,
   },
+  lang?: string,
   onChange?: OnChange,
-  closeOnSelect?: boolean
+  closeOnSelect?: boolean,
+  i18n?: II18n
 };
 
 export interface IState {
@@ -35,6 +34,7 @@ export interface IState {
 class MonthPickerInput extends Component<IProps, IState> {
   wrapper: HTMLDivElement;
   input: { input: Element };
+  private t: Translator;
 
   public static defaultProps: Partial<IProps> = {
     inputProps: {},
@@ -46,8 +46,10 @@ class MonthPickerInput extends Component<IProps, IState> {
     const { year, month } = this.props;
     let inputValue = '';
 
+    this.t = new Translator(this.props.lang, this.props.i18n);
+
     if (typeof year == 'number' && typeof month == 'number') {
-      inputValue = valuesToMask(month, year, this.props.lang);
+      inputValue = valuesToMask(month, year, this.t.lang);
     }
 
     this.state = {
@@ -59,7 +61,7 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   onCalendarChange = (year, month): void => {
-    const inputValue = valuesToMask(month, year, this.props.lang);
+    const inputValue = valuesToMask(month, year, this.t.lang);
     this.setState({
       inputValue,
       year,
@@ -74,7 +76,7 @@ class MonthPickerInput extends Component<IProps, IState> {
 
     if (mask.length && mask.indexOf('_') === -1) {
       const [month, year] = valuesFromMask(mask);
-      const inputValue = valuesToMask(month, year, this.props.lang);
+      const inputValue = valuesToMask(month, year, this.t.lang);
       this.setState({ year, month, inputValue });
       this.onChange(inputValue, year, month);
     } else this.setState({ inputValue: mask });
@@ -104,29 +106,25 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   calendar = (): JSX.Element => {
     const { year, month } = this.state;
-    let lang = this.props.lang ? this.props.lang : 'default';
+
     return (
       <div style={{ position: 'relative' }}>
         <MonthCalendar
           year={year}
           month={month}
-          lang={lang}
           onChange={this.onCalendarChange}
           onOutsideClick={this.onCalendarOutsideClick}
+          translator={this.t}
         />
       </div>
     )
   };
 
   inputProps = (): object => {
-    let dateFormat = DATE_FORMAT["default"];
-    if (this.props.lang == "ja") {
-      dateFormat = DATE_FORMAT["ja"];
-    }
     return Object.assign({}, {
       ref: input => { if(input) this.input = input; },
-      mask: "99/99",
-      placeholder: dateFormat,
+      mask: '99/99',
+      placeholder: this.t.dateFormat(),
       type: 'text',
       onBlur: this.onInputBlur,
       onFocus: this.onInputFocus,

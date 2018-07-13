@@ -3,15 +3,17 @@ import React, { Component } from 'react';
 import OutsideClickWrapper from '../OutsideClickWrapper';
 
 import Head from './Head';
-import { MONTHS_NAMES, VIEW_MONTHS, VIEW_YEARS } from './constants';
+import { VIEW_MONTHS, VIEW_YEARS } from './constants';
+
+import Translator from '../Translator';
 
 export interface IProps {
   year: void|number,
   month: void|number,
-  lang: string,
   startYear?: number,
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
+  translator: Translator
 }
 
 export interface IState {
@@ -22,12 +24,16 @@ export interface IState {
 }
 
 class MonthCalendar extends Component<IProps, IState> {
+  private t: Translator;
+
   constructor(props: IProps){
     super(props);
 
     const { year, month } = this.props;
 
     const startYear = this.props.startYear || new Date().getFullYear() - 6;
+
+    this.t = this.props.translator;
 
     this.state = {
       years: Array.from({length: 12}, (v, k) => k + startYear),
@@ -92,7 +98,7 @@ class MonthCalendar extends Component<IProps, IState> {
   renderMonths = (): JSX.Element[] => {
     const { selectedMonth } = this.state;
 
-    return MONTHS_NAMES[this.props.lang].map((month, index) => {
+    return this.t.monthNames().map((monthName, index) => {
       const selectedKlass = selectedMonth === index ? 'selected_cell' : '';
 
       return (
@@ -100,7 +106,7 @@ class MonthCalendar extends Component<IProps, IState> {
           key={index}
           onClick={() => this.selectMonth(index)}
           className={`col_mp span_1_of_3_mp ${selectedKlass}`}
-        >{month}</div>
+        >{this.t.monthName(monthName)}</div>
       )
     });
   };
@@ -132,7 +138,7 @@ class MonthCalendar extends Component<IProps, IState> {
         <Head
           year={selectedYear}
           month={selectedMonth ? selectedMonth + 1 : undefined}
-          lang={this.props.lang}
+          lang={this.t.lang}
           onValueClick={() => this.setState({ currentView: VIEW_YEARS })}
           onPrev={this.previous}
           onNext={this.next} />

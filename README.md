@@ -16,6 +16,16 @@ Live demo: [slavakisel.github.io/react-month-picker-input](https://slavakisel.gi
 | inputProps | object | empty object | Input field props, only `id` and `name` are supported |
 | onChange | Function: (maskedValue: string, year: number, month: number) => any | - | onChange callback, receives `maskedValue`, `year` and `month` (begins with 0) as arguments |
 | closeOnSelect | boolean | false | Close calendar on month select |
+| i18n | i18n object (optional) | see i18n schema below | i18n object. For now date formats must be either `MM/YY` or `YY/MM` |
+
+### I18n config
+
+| Name | Types | Default | Description |
+|---|---|---|---|
+| lang | string | en | One of: `en`, `ja`, `es`, `fr`, `ru`, `ua`, `hu` |
+| monthFormat | string | 'short' | One of: `short`, `long`. Display short or long format of month name (E.g. `Jan` or `January`) |
+| dateFormat | { lang: string } | see `src/i18n.js` | Object where langs are keys and values can either be `YY/MM` or `MM/YY` |
+| monthNames | { lang: string[] } | see `src/i18n.js` | Object where langs are keys and values are arrays of month names |
 
 ## Installation
 
