@@ -1,11 +1,22 @@
-export const valuesToMask = (month: number, year: number, lang?: string): string => {
+import Translator from './Translator';
+
+export const valuesToMask = (month: number, year: number, translate?: Translator): string => {
+  const t = translate || new Translator();
   const monthNum = month + 1;
   const monthVal = monthNum < 10 ? '0' + monthNum : monthNum;
-  const yearVal = year.toString().slice(2);
-  if (lang == 'ja') {
-    return yearVal + '/' + monthVal;
+  let shortYear = year.toString().slice(2);
+
+  switch(t.dateFormat()) {
+    case('YY/MM'):
+      return shortYear + '/' + monthVal;
+    case('MM/YYYY'):
+      return monthVal + '/' + year;
+    case('YYYY/MM'):
+      return year + '/' + monthVal;
+    case('MM/YY'):
+    default:
+      return monthVal + '/' + shortYear;
   }
-  return monthVal + '/' + yearVal;
 };
 
 export const valuesFromMask = (maskedValue: string): [number, number] => {

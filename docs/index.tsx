@@ -1,9 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import jsxToString from 'jsx-to-string';
 
-import MonthPickerInput from 'react-month-picker-input';
-import { MonthFormat } from 'react-month-picker-input';
+import MonthPickerInput, { DEFAULT_I18N, MonthFormat } from 'react-month-picker-input';
+
+interface IExample6State {
+  year: number,
+  month: number
+}
+
+class Example6 extends Component<{}, IExample6State> {
+  i18n: any;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      year: 2018,
+      month: 5
+    }
+
+    this.i18n = DEFAULT_I18N;
+    this.i18n.dateFormat.default = 'MM/YYYY';
+  }
+
+  render() {
+    return (
+      <div>
+        <input placeholder="Year" id="ex-5-year" type="number"
+          onChange={(e) => this.setState({ year: parseInt(e.target.value) || 2018 })} />
+        <input placeholder="Month" id="ex-5-month" type="number"
+          onChange={(e) => this.setState({ month: parseInt(e.target.value) || 5 })} />
+
+        <MonthPickerInput
+          year={this.state.year}
+          month={this.state.month - 1}
+          i18n={this.i18n}
+          inputProps={{id: "ex-5", name: "ex-5"}} />
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(
   (
@@ -123,6 +160,12 @@ ReactDOM.render(
             }
           }}
           inputProps={{id: "ex-4", name: "ex-4"}} />
+      </div>
+
+      <div className="example">
+        <h2>Assign new year and month</h2>
+
+        <Example6 />
       </div>
     </div>
   ),

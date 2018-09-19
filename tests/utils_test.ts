@@ -1,5 +1,7 @@
 import { valuesToMask, valuesFromMask } from '../src/utils';
 import { expect } from 'chai';
+import Translator from '../src/Translator';
+import { DEFAULT_I18N } from '../src/i18n';
 
 describe('valuesToMask', () => {
   it('returns masked value', () => {
@@ -13,8 +15,15 @@ describe('valuesToMask', () => {
   });
 
   it('returns ja format value', () => {
-    const result = valuesToMask(0, 2018, 'ja');
+    const result = valuesToMask(0, 2018, new Translator('ja'));
     expect(result).to.equal('18/01');
+  });
+
+  it('returns date in long format', () => {
+    const i18n = DEFAULT_I18N;
+    i18n.dateFormat.default = 'YYYY/MM';
+    const result = valuesToMask(0, 2018, new Translator('en', i18n));
+    expect(result).to.equal('2018/01');
   });
 });
 

@@ -1,6 +1,8 @@
 export enum DateFormat {
   'MM/YY',
-  'YY/MM'
+  'MM/YYYY',
+  'YY/MM',
+  'YYYY/MM'
 };
 
 export enum MonthFormat {
