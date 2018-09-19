@@ -23,7 +23,7 @@ export interface IProps {
   lang?: string,
   onChange?: OnChange,
   closeOnSelect?: boolean,
-  i18n?: II18n
+  i18n?: Partial<II18n>
 };
 
 export interface IState {

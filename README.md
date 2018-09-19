@@ -42,9 +42,10 @@ var MonthPickerInput = require('react-month-picker-input');
 require('react-month-picker-input/dist/react-month-picker-input.css');
 
 <MonthPickerInput
-  value={new Date()}
-  onChange={function(selectedYear, selectedMonth) {
-    console.log(selectedYear, selectedMonth);
+  year={2018}
+  month={8}
+  onChange={function(maskedValue, selectedYear, selectedMonth) {
+    console.log(maskedValue, selectedYear, selectedMonth);
   }}
 />
 ```

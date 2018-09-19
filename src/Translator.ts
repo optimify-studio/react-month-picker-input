@@ -1,11 +1,12 @@
 import { DEFAULT_I18N, II18n, MonthFormat } from './i18n';
+const merge = require('lodash.merge');
 
 class Translator {
   public lang: string;
   public i18n: II18n;
 
-  constructor(lang?: string, i18n?: II18n) {
-    this.i18n = i18n || DEFAULT_I18N;
+  constructor(lang?: string, i18n?: Partial<II18n>) {
+    this.i18n = merge({}, DEFAULT_I18N, i18n || {});
     this.lang = lang || 'default';
   }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import jsxToString from 'jsx-to-string';
 
-import MonthPickerInput, { DEFAULT_I18N, MonthFormat } from 'react-month-picker-input';
+import MonthPickerInput, { MonthFormat } from 'react-month-picker-input';
 
 interface IExample6State {
   year: number,
@@ -10,18 +10,13 @@ interface IExample6State {
 }
 
 class Example6 extends Component<{}, IExample6State> {
-  i18n: any;
-
   constructor(props) {
     super(props);
 
     this.state = {
       year: 2018,
       month: 5
-    }
-
-    this.i18n = DEFAULT_I18N;
-    this.i18n.dateFormat.default = 'MM/YYYY';
+    };
   }
 
   render() {
@@ -35,7 +30,7 @@ class Example6 extends Component<{}, IExample6State> {
         <MonthPickerInput
           year={this.state.year}
           month={this.state.month - 1}
-          i18n={this.i18n}
+          i18n={{ dateFormat: { default: 'YYYY/MM' } }}
           inputProps={{id: "ex-5", name: "ex-5"}} />
       </div>
     );

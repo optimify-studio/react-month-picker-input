@@ -20,9 +20,7 @@ describe('valuesToMask', () => {
   });
 
   it('returns date in long format', () => {
-    const i18n = DEFAULT_I18N;
-    i18n.dateFormat.default = 'YYYY/MM';
-    const result = valuesToMask(0, 2018, new Translator('en', i18n));
+    const result = valuesToMask(0, 2018, new Translator('en', { dateFormat: { default: 'YYYY/MM' } }));
     expect(result).to.equal('2018/01');
   });
 });
