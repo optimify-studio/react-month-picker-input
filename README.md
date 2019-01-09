@@ -11,6 +11,7 @@ Live demo: [slavakisel.github.io/react-month-picker-input](https://slavakisel.gi
 
 | Name | Types | Default | Description |
 |---|---|---|---|
+| mode | enum | 'normal' | Component mode. Available are 'normal', 'readOnly' (input cannot be changed, calendar can be opened but selection is disabled), 'calendarOnly' (input cannot be changed and date can be selected only though calendar) |
 | year | number | void | Preselect year in calendar |
 | month | number (0..11) | void | Preselect month in calendar. If both year and month are specified then input field will be also prepopulated |
 | inputProps | object | empty object | Input field props, only `id` and `name` are supported |
