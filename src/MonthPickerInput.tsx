@@ -13,6 +13,12 @@ type OnChange = (maskedValue: string, year: number, month: number) => any;
 
 export const DEFAULT_I18N = I18n_DEF;
 
+export enum Mode {
+  NORMAL = 'normal',
+  READ_ONLY = 'readOnly',
+  CALENDAR_ONLY = 'calendarOnly'
+}
+
 export interface IProps {
   year?: number,
   month?: number,
@@ -23,7 +29,8 @@ export interface IProps {
   lang?: string,
   onChange?: OnChange,
   closeOnSelect?: boolean,
-  i18n?: Partial<II18n>
+  i18n?: Partial<II18n>,
+  mode?: Mode
 };
 
 export interface IState {
@@ -41,7 +48,8 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   public static defaultProps: Partial<IProps> = {
     inputProps: {},
-    closeOnSelect: false
+    closeOnSelect: false,
+    mode: Mode.NORMAL
   };
 
   constructor(props) {
@@ -74,6 +82,10 @@ class MonthPickerInput extends Component<IProps, IState> {
     }
   };
 
+  inputReadonly = (): boolean => {
+    return this.props.mode === Mode.READ_ONLY || this.props.mode === Mode.CALENDAR_ONLY;
+  }
+
   valuesToMask = (month: number|void, year: number|void): string => {
     if (typeof year == 'number' && typeof month == 'number') {
       return valuesToMask(month, year, this.t);
@@ -92,6 +104,8 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   onInputChange = (e: { target: { value: string }}): void => {
+    if (this.inputReadonly()) return;
+
     const mask = e.target.value;
 
     if (mask.length && mask.indexOf('_') === -1) {
@@ -135,6 +149,7 @@ class MonthPickerInput extends Component<IProps, IState> {
           onChange={this.onCalendarChange}
           onOutsideClick={this.onCalendarOutsideClick}
           translator={this.t}
+          readOnly={this.props.mode === Mode.READ_ONLY}
         />
       </div>
     )
@@ -149,6 +164,7 @@ class MonthPickerInput extends Component<IProps, IState> {
       onBlur: this.onInputBlur,
       onFocus: this.onInputFocus,
       onChange: this.onInputChange,
+      className: `month-input ${this.inputReadonly() ? 'readonly' : ''}`
     }, this.props.inputProps)
   };
 

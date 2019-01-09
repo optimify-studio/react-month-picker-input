@@ -13,7 +13,8 @@ export interface IProps {
   startYear?: number,
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
-  translator: Translator
+  translator: Translator,
+  readOnly?: boolean
 }
 
 export interface IState {
@@ -25,6 +26,10 @@ export interface IState {
 
 class MonthCalendar extends Component<IProps, IState> {
   private t: Translator;
+
+  public static defaultProps: Partial<IProps> = {
+    readOnly: false
+  };
 
   constructor(props: IProps){
     super(props);
@@ -66,23 +71,37 @@ class MonthCalendar extends Component<IProps, IState> {
   }
 
   selectYear = (selectedYear: number): void => {
+    if (this.props.readOnly) return;
+
     this.setState({ selectedYear, currentView: VIEW_MONTHS });
     this.onChange(selectedYear, this.state.selectedMonth);
   };
 
   selectMonth = (selectedMonth: number): void => {
+    if (this.props.readOnly) return;
+
     this.setState({ selectedMonth });
     this.onChange(this.state.selectedYear, selectedMonth);
   };
 
   previous = (): void => {
+    if (this.props.readOnly) return;
+
     const startYear = this.state.years[0] - 12;
     this.updateYears(startYear);
   }
 
   next = (): void => {
+    if (this.props.readOnly) return;
+
     const startYear = this.state.years[11] + 1;
     this.updateYears(startYear);
+  }
+
+  onYearClick = (): void => {
+    if (this.props.readOnly) return;
+
+    this.setState({ currentView: VIEW_YEARS });
   }
 
   updateYears = (startYear: number): void => {
@@ -130,16 +149,18 @@ class MonthCalendar extends Component<IProps, IState> {
   render(): JSX.Element {
     const { selectedYear, selectedMonth } = this.state;
 
+    const containerClass = `calendar-container ${this.props.readOnly ? 'readonly' : ''}`;
+
     return (
       <OutsideClickWrapper
         onOutsideClick={this.props.onOutsideClick}
-        className="calendar-container"
+        className={containerClass}
       >
         <Head
           year={selectedYear}
           month={selectedMonth ? selectedMonth + 1 : undefined}
           lang={this.t.lang}
-          onValueClick={() => this.setState({ currentView: VIEW_YEARS })}
+          onValueClick={this.onYearClick}
           onPrev={this.previous}
           onNext={this.next} />
 

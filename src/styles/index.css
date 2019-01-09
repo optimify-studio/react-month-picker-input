@@ -53,6 +53,11 @@
   background-color: darkslateblue;
   cursor: pointer;
 }
+.calendar-container.readonly .col_mp:hover{
+  background-color: transparent;
+  cursor:default;
+  color:inherit;
+}
 .selected_date_mp{
   font-size:12px;
   color:darkslateblue;
@@ -66,4 +71,8 @@
 .arrows_mp{
   font-weight: bold;
   font-size: 18px;
+}
+
+.month-input.readonly {
+  background-color: #eee;
 }
