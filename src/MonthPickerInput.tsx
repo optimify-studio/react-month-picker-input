@@ -172,7 +172,7 @@ class MonthPickerInput extends Component<IProps, IState> {
     const { inputValue, showCalendar } = this.state;
 
     return (
-      <div ref={wrap => { if(wrap) this.wrapper = wrap; }}>
+      <div ref={wrap => { if(wrap) this.wrapper = wrap; }} className="react-month-picker">
         <InputMask
           value={inputValue}
           {...this.inputProps()}
