@@ -37,7 +37,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
     const { year, month } = this.props;
 
-    let startYear = this.getNormalizedStartYear(this.props.startYear) || new Date().getFullYear() - 6;
+    let startYear = this.getNormalizedStartYear(this.props.startYear);
 
     this.t = this.props.translator;
 
@@ -106,7 +106,9 @@ class MonthCalendar extends Component<IProps, IState> {
   }
 
   getNormalizedStartYear = (startYear: number): number => {
-    return this.props.maxYear && (startYear + 12) > this.props.maxYear ? this.props.maxYear - 11 : startYear;
+    startYear = startYear || new Date().getFullYear() - 6;
+    if (this.props.maxYear === undefined) return startYear;
+    return startYear + 11 > this.props.maxYear ? this.props.maxYear - 11 : startYear;
   }
 
   updateYears = (startYear: number): void => {
