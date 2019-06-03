@@ -37,7 +37,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
     const { year, month } = this.props;
 
-    let startYear = this.getNormalizedStartYear(this.props.startYear) || new Date().getFullYear() - 18;
+    let startYear = this.getNormalizedStartYear(this.props.startYear) || new Date().getFullYear() - 6;
 
     this.t = this.props.translator;
 
