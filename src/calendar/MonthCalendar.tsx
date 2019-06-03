@@ -11,6 +11,7 @@ export interface IProps {
   year: void|number,
   month: void|number,
   startYear?: number,
+  maxYear?: number,
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
   translator: Translator,
@@ -36,7 +37,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
     const { year, month } = this.props;
 
-    const startYear = this.props.startYear || new Date().getFullYear() - 6;
+    let startYear = this.getNormalizedStartYear(this.props.startYear) || new Date().getFullYear() - 18;
 
     this.t = this.props.translator;
 
@@ -104,8 +105,12 @@ class MonthCalendar extends Component<IProps, IState> {
     this.setState({ currentView: VIEW_YEARS });
   }
 
+  getNormalizedStartYear = (startYear: number): number => {
+    return this.props.maxYear && (startYear + 12) > this.props.maxYear ? this.props.maxYear - 11 : startYear;
+  }
+
   updateYears = (startYear: number): void => {
-    const years = Array.from({length: 12}, (v, k) => k + startYear);
+    const years = Array.from({length: 12}, (v, k) => k + this.getNormalizedStartYear(startYear));
 
     this.setState({ years, currentView: VIEW_YEARS });
   }

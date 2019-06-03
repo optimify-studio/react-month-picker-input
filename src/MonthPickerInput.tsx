@@ -26,6 +26,7 @@ export interface IProps {
     name?: string,
     id?: string,
   },
+  maxYear?: number,
   startYear?: number,
   lang?: string,
   onChange?: OnChange,
@@ -55,7 +56,7 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   constructor(props) {
     super(props);
-    const { year, month, startYear} = this.props;
+    const { year, month, maxYear, startYear} = this.props;
     let inputValue = '';
 
     this.t = new Translator(this.props.lang, this.props.i18n);
@@ -64,6 +65,7 @@ class MonthPickerInput extends Component<IProps, IState> {
     this.state = {
       year,
       month,
+      maxYear,
       startYear,
       inputValue: this.valuesToMask(month, year),
       showCalendar: false,
@@ -141,13 +143,14 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   calendar = (): JSX.Element => {
-    const { year, month, startYear } = this.state;
+    const { year, month, maxYear, startYear } = this.state;
 
     return (
       <div style={{ position: 'relative' }}>
         <MonthCalendar
           year={year}
           month={month}
+          maxYear={maxYear}
           startYear={startYear}
           onChange={this.onCalendarChange}
           onOutsideClick={this.onCalendarOutsideClick}
