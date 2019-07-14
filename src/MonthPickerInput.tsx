@@ -65,8 +65,6 @@ class MonthPickerInput extends Component<IProps, IState> {
     this.state = {
       year,
       month,
-      maxYear,
-      startYear,
       inputValue: this.valuesToMask(month, year),
       showCalendar: false,
     }
@@ -143,7 +141,8 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   calendar = (): JSX.Element => {
-    const { year, month, maxYear, startYear } = this.state;
+    const { startYear, maxYear } = this.props;
+    const { year, month } = this.state;
 
     return (
       <div style={{ position: 'relative' }}>

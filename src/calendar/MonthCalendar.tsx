@@ -105,7 +105,7 @@ class MonthCalendar extends Component<IProps, IState> {
     this.setState({ currentView: VIEW_YEARS });
   }
 
-  getNormalizedStartYear = (startYear: number): number => {
+  getNormalizedStartYear = (startYear: number | undefined): number => {
     startYear = startYear || new Date().getFullYear() - 6;
     if (this.props.maxYear === undefined) return startYear;
     return startYear + 11 > this.props.maxYear ? this.props.maxYear - 11 : startYear;

@@ -48833,9 +48833,10 @@ var MonthPickerInput = /** @class */ (function (_super) {
             _this.setState({ showCalendar: _this.input.input == e.target });
         };
         _this.calendar = function () {
-            var _a = _this.state, year = _a.year, month = _a.month;
+            var _a = _this.props, startYear = _a.startYear, maxYear = _a.maxYear;
+            var _b = _this.state, year = _b.year, month = _b.month;
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { position: 'relative' } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick, translator: _this.t, readOnly: _this.props.mode === Mode.READ_ONLY })));
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, maxYear: maxYear, startYear: startYear, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick, translator: _this.t, readOnly: _this.props.mode === Mode.READ_ONLY })));
         };
         _this.inputProps = function () {
             return Object.assign({}, {
@@ -48850,7 +48851,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
                 className: "month-input " + (_this.inputReadonly() ? 'readonly' : '')
             }, _this.props.inputProps);
         };
-        var _a = _this.props, year = _a.year, month = _a.month;
+        var _a = _this.props, year = _a.year, month = _a.month, maxYear = _a.maxYear, startYear = _a.startYear;
         var inputValue = '';
         _this.t = new __WEBPACK_IMPORTED_MODULE_5__Translator__["a" /* default */](_this.props.lang, _this.props.i18n);
         _this.inputMask = _this.t.dateFormat().replace(/M|Y/g, '9');
@@ -49858,8 +49859,14 @@ var MonthCalendar = /** @class */ (function (_super) {
                 return;
             _this.setState({ currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_YEARS */] });
         };
+        _this.getNormalizedStartYear = function (startYear) {
+            startYear = startYear || new Date().getFullYear() - 6;
+            if (_this.props.maxYear === undefined)
+                return startYear;
+            return startYear + 11 > _this.props.maxYear ? _this.props.maxYear - 11 : startYear;
+        };
         _this.updateYears = function (startYear) {
-            var years = Array.from({ length: 12 }, function (v, k) { return k + startYear; });
+            var years = Array.from({ length: 12 }, function (v, k) { return k + _this.getNormalizedStartYear(startYear); });
             _this.setState({ years: years, currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_YEARS */] });
         };
         _this.isYears = function () {
@@ -49880,7 +49887,7 @@ var MonthCalendar = /** @class */ (function (_super) {
             });
         };
         var _a = _this.props, year = _a.year, month = _a.month;
-        var startYear = _this.props.startYear || new Date().getFullYear() - 6;
+        var startYear = _this.getNormalizedStartYear(_this.props.startYear);
         _this.t = _this.props.translator;
         _this.state = {
             years: Array.from({ length: 12 }, function (v, k) { return k + startYear; }),
