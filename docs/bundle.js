@@ -50052,7 +50052,7 @@ var valuesFromMask = function (maskedValue) {
     var monthNum = rawMonth > 12 ? 12 : (rawMonth == 0 ? 1 : rawMonth);
     var month = monthNum - 1;
     // TODO: make base dynamic
-    var year = 2000 + parseInt(yearVal);
+    var year = yearVal.length > 2 ? parseInt(yearVal) : 2000 + parseInt(yearVal);
     return [month, year];
 };
 
