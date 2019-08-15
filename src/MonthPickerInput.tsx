@@ -77,7 +77,7 @@ class MonthPickerInput extends Component<IProps, IState> {
     if (nextProps.month !== this.props.month) { update.month = nextProps.month }
 
     if (Object.keys(update).length) {
-      const month = update.month || this.state.month;
+      const month = typeof update.month == 'undefined' ? this.state.month : update.month;
       const year = update.year || this.state.year;
       update.inputValue = this.valuesToMask(month, year);
       this.setState(update as IState);

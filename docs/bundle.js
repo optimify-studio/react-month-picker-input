@@ -48873,7 +48873,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
             update.month = nextProps.month;
         }
         if (Object.keys(update).length) {
-            var month = update.month || this.state.month;
+            var month = typeof update.month == 'undefined' ? this.state.month : update.month;
             var year = update.year || this.state.year;
             update.inputValue = this.valuesToMask(month, year);
             this.setState(update);
