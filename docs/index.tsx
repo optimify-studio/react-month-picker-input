@@ -14,7 +14,33 @@ const Example0 = () => {
 
       <pre>{ jsxToString(<MonthPickerInput />) }</pre>
 
-      <MonthPickerInput inputProps={{id: id, name: id}} />
+      <MonthPickerInput inputProps={{id: id, name: id, className: "form__input"}} />
+    </div>
+  )
+};
+
+const Example01 = () => {
+  const id = `ex-${shortid.generate()}`;
+  const inputProps = { id: id, name: id, className: "form__input", required: true, size: 6, maxLength: 6 };
+
+  return (
+    <div className="example">
+      <h2>Input props (all optional)</h2>
+
+      <ul>
+        <li>id</li>
+        <li>name</li>
+        <li>className</li>
+        <li>size</li>
+        <li>maxLength</li>
+        <li>required</li>
+      </ul>
+
+      <pre>{
+        jsxToString(<MonthPickerInput inputProps={inputProps} />)
+      }</pre>
+
+      <MonthPickerInput inputProps={inputProps} />
     </div>
   )
 };
@@ -222,6 +248,7 @@ ReactDOM.render(
   (
     <div>
       <Example0 />
+      <Example01 />
       <Example1 />
       <Example2 />
       <Example4 />

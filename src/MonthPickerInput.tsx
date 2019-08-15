@@ -25,6 +25,10 @@ export interface IProps {
   inputProps?: {
     name?: string,
     id?: string,
+    className?: string,
+    size?: string|number,
+    maxLength?: string|number,
+    required?: boolean
   },
   maxYear?: number,
   startYear?: number,

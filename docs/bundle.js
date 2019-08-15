@@ -20475,7 +20475,22 @@ var Example0 = function () {
     return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "example" },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, "Without props"),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("pre", null, __WEBPACK_IMPORTED_MODULE_2_jsx_to_string___default()(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_month_picker_input__["c" /* default */], null))),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_month_picker_input__["c" /* default */], { inputProps: { id: id, name: id } })));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_month_picker_input__["c" /* default */], { inputProps: { id: id, name: id, className: "form__input" } })));
+};
+var Example01 = function () {
+    var id = "ex-" + __WEBPACK_IMPORTED_MODULE_3_shortid___default.a.generate();
+    var inputProps = { id: id, name: id, className: "form__input", required: true, size: 6, maxLength: 6 };
+    return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "example" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, "Input props (all optional)"),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "id"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "name"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "className"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "size"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "maxLength"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", null, "required")),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("pre", null, __WEBPACK_IMPORTED_MODULE_2_jsx_to_string___default()(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_month_picker_input__["c" /* default */], { inputProps: inputProps }))),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_month_picker_input__["c" /* default */], { inputProps: inputProps })));
 };
 var Example1 = function () {
     var id = "ex-" + __WEBPACK_IMPORTED_MODULE_3_shortid___default.a.generate();
@@ -20585,6 +20600,7 @@ var Example8 = /** @class */ (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render((__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example0, null),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example01, null),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example1, null),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example2, null),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example4, null),
