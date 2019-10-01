@@ -9,13 +9,13 @@ export const valuesToMask = (month: number, year: number, translate?: Translator
   switch(t.dateFormat()) {
     case('YY/MM'):
       return shortYear + '/' + monthVal;
-    case('MM/YYYY'):
-      return monthVal + '/' + year;
+    case('MM/YY'):
+      return monthVal + '/' + shortYear;
     case('YYYY/MM'):
       return year + '/' + monthVal;
-    case('MM/YY'):
+    case('MM/YYYY'):
     default:
-      return monthVal + '/' + shortYear;
+      return monthVal + '/' + year;
   }
 };
 
