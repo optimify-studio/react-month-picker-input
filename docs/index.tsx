@@ -131,7 +131,9 @@ const Example6 = () => {
       <pre>
         { jsxToString(<MonthPickerInput closeOnSelect={true} />) }
       </pre>
-
+      <label htmlFor={id}>
+        Choose a Date
+      </label>
       <MonthPickerInput
         closeOnSelect={true}
         inputProps={{id, name: id}} />
