@@ -1,6 +1,23 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.2.9](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.8...v1.2.9) (2019-10-02)
+
+* chore(deps): bump forwarded from 0.1.1 to 0.1.2 dependencies
+* chore(deps-dev): bump webpack-dev-server from 2.7.1 to 3.1.11 dependencies
+* chore(deps): bump handlebars from 4.0.10 to 4.4.0 dependencies
+* chore(deps): bump lodash.template from 4.4.0 to 4.5.0 dependencies
+* chore(deps): bump tough-cookie from 2.3.2 to 2.3.4 dependencies
+* chore(deps): bump concat-with-sourcemaps from 1.0.4 to 1.1.0 dependencies
+* chore(deps): bump stringstream from 0.0.5 to 0.0.6 dependencies
+* chore(deps): bump lodash from 4.17.4 to 4.17.15 dependencies
+* chore(deps): bump clean-css from 4.1.8 to 4.1.11 dependencies
+* chore(deps): bump extend from 3.0.1 to 3.0.2 dependencies
+* chore(deps): bump macaddress from 0.2.8 to 0.2.9 dependencies
+* chore(deps): bump lodash.merge from 4.6.1 to 4.6.2 dependencies
+* chore(deps): bump sshpk from 1.13.1 to 1.16.1 dependencies
+
 
 <a name="1.2.8"></a>
 ## [1.2.8](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.7...v1.2.8) (2019-10-02)
