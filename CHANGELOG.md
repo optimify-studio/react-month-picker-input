@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.8"></a>
+## [1.2.8](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.7...v1.2.8) (2019-10-02)
+
+Bumps [tar](https://github.com/npm/node-tar) from 2.2.1 to 2.2.2.
+
 <a name="1.2.7"></a>
 ## [1.2.7](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.6...v1.2.7) (2019-08-15)
 
