@@ -30,7 +30,7 @@
     "mocha": "^3.5.3",
     "path": "^0.12.7",
     "shortid": "^2.2.14",
-    "standard-version": "^4.2.0",
+    "standard-version": "7.0.0",
     "style-loader": "^0.18.2",
     "ts-loader": "^2.3.7",
     "ts-node": "^3.3.0",
