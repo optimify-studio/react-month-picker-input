@@ -19,8 +19,9 @@ export const valuesToMask = (month: number, year: number, translate?: Translator
   }
 };
 
-export const valuesFromMask = (maskedValue: string): [number, number] => {
-  const [monthVal, yearVal] = maskedValue.split('/');
+export const valuesFromMask = (maskedValue: string, translate?: Translator): [number, number] => {
+  const t = translate || new Translator();
+  const [monthVal, yearVal] = (t.dateFormat() == 'MM/YYYY') || (t.dateFormat() == 'MM/YY') ? maskedValue.split('/') : maskedValue.split('/').reverse();
 
   const rawMonth = parseInt(monthVal);
   const monthNum = rawMonth > 12 ? 12 : (rawMonth == 0 ? 1 : rawMonth);
@@ -28,6 +29,5 @@ export const valuesFromMask = (maskedValue: string): [number, number] => {
 
   // TODO: make base dynamic
   const year = yearVal.length > 2 ? parseInt(yearVal) :2000 + parseInt(yearVal);
-
   return [month, year];
 };

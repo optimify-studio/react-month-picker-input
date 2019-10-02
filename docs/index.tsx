@@ -226,7 +226,6 @@ class Example8 extends Component<{}, IExample8State> {
     return (
       <div className="example">
         <h2>Assign new year and month</h2>
-
         <div>
           <input placeholder="Year" id={`ex-${id}-year`} type="number"
             onChange={(e) => this.setState({ year: parseInt(e.target.value) || 2018 })} />
