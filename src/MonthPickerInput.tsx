@@ -115,7 +115,7 @@ class MonthPickerInput extends Component<IProps, IState> {
     const mask = e.target.value;
 
     if (mask.length && mask.indexOf('_') === -1) {
-      const [month, year] = valuesFromMask(mask);
+      const [month, year] = valuesFromMask(mask, this.t);
       const inputValue = this.valuesToMask(month, year);
       this.setState({ year, month, inputValue });
       this.onChange(inputValue, year, month);

@@ -14,7 +14,7 @@ describe('with defaults', () => {
   });
 
   it('returns dateFormat', () => {
-    expect(translator.dateFormat()).to.equal('MM/YY');
+    expect(translator.dateFormat()).to.equal('MM/YYYY');
   });
 
   it('returns default months', () => {
@@ -107,7 +107,7 @@ describe('with non-existent config', () => {
   });
 
   it('returns dateFormat', () => {
-    expect(translator.dateFormat()).to.equal('MM/YY');
+    expect(translator.dateFormat()).to.equal('MM/YYYY');
   });
 
   it('returns default months', () => {

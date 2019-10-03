@@ -17,7 +17,7 @@ export interface II18n {
 };
 
 export const DATE_FORMAT = {
-  'default': 'MM/YY',
+  'default': 'MM/YYYY',
   'ja': 'YY/MM'
 };
 
