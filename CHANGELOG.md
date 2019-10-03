@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.10](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.9...v1.2.10) (2019-10-03)
+
 ### [1.2.9](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.8...v1.2.9) (2019-10-02)
 
 * chore(deps): bump forwarded from 0.1.1 to 0.1.2 dependencies
