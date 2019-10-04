@@ -4,6 +4,7 @@ import OutsideClickWrapper from '../OutsideClickWrapper';
 
 import Head from './Head';
 import { VIEW_MONTHS, VIEW_YEARS } from './constants';
+import { validationOfDate } from '../utils';
 
 import Translator from '../Translator';
 
@@ -12,6 +13,8 @@ export interface IProps {
   month: void|number,
   startYear?: number,
   maxYear?: number,
+  minDate?: [number, number],
+  maxDate?: [number, number],
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
   translator: Translator,
@@ -49,6 +52,10 @@ class MonthCalendar extends Component<IProps, IState> {
     };
   }
 
+  minMaxDate = (): any => {
+    return validationOfDate(this.props.minDate, this.props.maxDate)
+  };
+
   componentWillReceiveProps(nextProps) {
     const { year, month } = nextProps;
     const { selectedYear, selectedMonth } = this.state;
@@ -73,14 +80,22 @@ class MonthCalendar extends Component<IProps, IState> {
 
   selectYear = (selectedYear: number): void => {
     if (this.props.readOnly) return;
-
+    const minDateYear = this.minMaxDate()[0][1];
+    selectedYear = selectedYear < minDateYear ? minDateYear : selectedYear;
     this.setState({ selectedYear, currentView: VIEW_MONTHS });
     this.onChange(selectedYear, this.state.selectedMonth);
   };
 
   selectMonth = (selectedMonth: number): void => {
+    const [maxDateMonth, maxDateYear] = this.minMaxDate()[1];
+    const [minDateMonth, minDateYear] = this.minMaxDate()[0];
     if (this.props.readOnly) return;
-
+    if (maxDateYear == this.state.selectedYear) {
+      selectedMonth = selectedMonth > maxDateMonth -1 ? maxDateMonth -1 : selectedMonth;
+    };
+    if (minDateYear == this.state.selectedYear) {
+      selectedMonth = selectedMonth < minDateMonth -1 ? minDateMonth -1 : selectedMonth;
+    };
     this.setState({ selectedMonth });
     this.onChange(this.state.selectedYear, selectedMonth);
   };
@@ -106,9 +121,12 @@ class MonthCalendar extends Component<IProps, IState> {
   }
 
   getNormalizedStartYear = (startYear: number | undefined): number => {
+    const maxDate = this.minMaxDate()[1];
     startYear = startYear || new Date().getFullYear() - 6;
-    if (this.props.maxYear === undefined) return startYear;
-    return startYear + 11 > this.props.maxYear ? this.props.maxYear - 11 : startYear;
+    const maxDateYear = maxDate[1];
+    if (this.props.maxYear === undefined) return startYear + 11 > maxDateYear ? maxDateYear - 11 : startYear;
+    const maxYear = maxDateYear < this.props.maxYear ? maxDateYear : this.props.maxYear;
+    return startYear + 11 > maxYear ? maxYear - 11 : startYear;
   }
 
   updateYears = (startYear: number): void => {
