@@ -53,7 +53,7 @@ class MonthCalendar extends Component<IProps, IState> {
   }
 
   minMaxDate = (): any => {
-    return validationOfDate(this.props.minDate, this.props.maxDate)
+    return validationOfDate(this.props.minDate, this.props.maxDate, this.props.maxYear)
   };
 
   componentWillReceiveProps(nextProps) {
@@ -122,11 +122,9 @@ class MonthCalendar extends Component<IProps, IState> {
 
   getNormalizedStartYear = (startYear: number | undefined): number => {
     const maxDate = this.minMaxDate()[1];
-    startYear = startYear || new Date().getFullYear() - 6;
+    startYear = startYear || this.props.year || new Date().getFullYear() - 6;
     const maxDateYear = maxDate[1];
-    if (this.props.maxYear === undefined) return startYear + 11 > maxDateYear ? maxDateYear - 11 : startYear;
-    const maxYear = maxDateYear < this.props.maxYear ? maxDateYear : this.props.maxYear;
-    return startYear + 11 > maxYear ? maxYear - 11 : startYear;
+    return startYear + 11 > maxDateYear ? maxDateYear - 11 : startYear;
   }
 
   updateYears = (startYear: number): void => {

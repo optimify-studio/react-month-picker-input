@@ -117,7 +117,7 @@ class MonthPickerInput extends Component<IProps, IState> {
     const mask = e.target.value;
 
     if (mask.length && mask.indexOf('_') === -1) {
-      const [minDate, maxDate] = validationOfDate(this.props.minDate, this.props.maxDate);
+      const [minDate, maxDate] = validationOfDate(this.props.minDate, this.props.maxDate, this.props.maxYear);
       const [month, year] = valuesFromMask(mask, this.t, minDate, maxDate);
       const inputValue = this.valuesToMask(month, year);
       this.setState({ year, month, inputValue });

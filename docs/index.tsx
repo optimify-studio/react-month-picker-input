@@ -210,7 +210,7 @@ const Example7_1 = () => {
 
   return (
     <div className="example">
-      <h2>With limits minDate and maxDate</h2>
+      <h2>Limit selection with minDate or maxDate constraints</h2>
 
       <pre>{ jsxToString(<MonthPickerInput minDate={[10, 2015]} maxDate={[1, 2042]}/>) }</pre>
 
