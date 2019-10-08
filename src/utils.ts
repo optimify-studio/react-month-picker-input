@@ -40,14 +40,14 @@ export const valuesFromMask = (maskedValue: string, translate: Translator, minDa
   } else{
     monthNum = monthNum;
   };
-  const month = monthNum-1;
+  const month = monthNum - 1;
   return [month, year];
 };
 
 export const validationOfDate = (minDate?: [number, number], maxDate?: [number, number], maxYear?: number): any => {
   let minDateValid = [1, 1];
   let maxDateValid = [12, 9999];
-  if (minDate && minDate.length==2) {
+  if (minDate && minDate.length == 2) {
     const [minDateMonthVal, minDateYear] = minDate;
     if (typeof minDateMonthVal == 'number' && typeof minDateYear == 'number') {
       const minDateMonth = minDateMonthVal > 12 ? 12 : (minDateMonthVal == 0 ? 1 : minDateMonthVal);
@@ -55,12 +55,12 @@ export const validationOfDate = (minDate?: [number, number], maxDate?: [number, 
     } else {
       console.warn(`Wrong type of date for minDate. Must be [number(month), number(year)]`);
     };
-  } else if (minDate && minDate.length!=2){
+  } else if (minDate && minDate.length != 2){
     console.warn(`Wrong type of date for minDate. Must be [number(month), number(year)]`);
   };
 
   if (maxYear && typeof maxYear == 'number') {
-    if (maxDate && maxDate.length==2) {
+    if (maxDate && maxDate.length == 2) {
       const [maxDateMonthVal, maxDateYear] = maxDate;
       if (typeof maxDateMonthVal == 'number' && typeof maxDateYear == 'number') {
         const maxDateMonth = maxDateMonthVal > 12 ? 12 : (maxDateMonthVal == 0 ? 1 : maxDateMonthVal);
@@ -69,11 +69,11 @@ export const validationOfDate = (minDate?: [number, number], maxDate?: [number, 
         maxDateValid = [12, maxYear]
         console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
       };
-    } else if (maxDate && maxDate.length!=2){
+    } else if (maxDate && maxDate.length !=2 ){
       maxDateValid = [12, maxYear]
       console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
     };
-  } else if (maxDate && maxDate.length==2) {
+  } else if (maxDate && maxDate.length == 2) {
     const [maxDateMonthVal, maxDateYear] = maxDate;
     if (typeof maxDateMonthVal == 'number' && typeof maxDateYear == 'number') {
       const maxDateMonth = maxDateMonthVal > 12 ? 12 : (maxDateMonthVal == 0 ? 1 : maxDateMonthVal);

@@ -87,14 +87,13 @@ class MonthCalendar extends Component<IProps, IState> {
   };
 
   selectMonth = (selectedMonth: number): void => {
-    const [maxDateMonth, maxDateYear] = this.minMaxDate()[1];
-    const [minDateMonth, minDateYear] = this.minMaxDate()[0];
+    const [[minDateMonth, minDateYear], [maxDateMonth, maxDateYear]] = this.minMaxDate();
     if (this.props.readOnly) return;
     if (maxDateYear == this.state.selectedYear) {
-      selectedMonth = selectedMonth > maxDateMonth -1 ? maxDateMonth -1 : selectedMonth;
+      selectedMonth = selectedMonth > maxDateMonth - 1 ? maxDateMonth - 1 : selectedMonth;
     };
     if (minDateYear == this.state.selectedYear) {
-      selectedMonth = selectedMonth < minDateMonth -1 ? minDateMonth -1 : selectedMonth;
+      selectedMonth = selectedMonth < minDateMonth - 1 ? minDateMonth - 1 : selectedMonth;
     };
     this.setState({ selectedMonth });
     this.onChange(this.state.selectedYear, selectedMonth);
