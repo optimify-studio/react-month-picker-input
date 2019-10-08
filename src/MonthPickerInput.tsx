@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InputMask from 'react-input-mask';
 
 import MonthCalendar from './calendar';
-import { valuesToMask, valuesFromMask } from './utils';
+import { valuesToMask, valuesFromMask, validationOfDate } from './utils';
 
 import { II18n, DEFAULT_I18N as I18n_DEF } from './i18n';
 import Translator from './Translator';
@@ -32,6 +32,8 @@ export interface IProps {
   },
   maxYear?: number,
   startYear?: number,
+  minDate?: [number, number],
+  maxDate?: [number, number],
   lang?: string,
   onChange?: OnChange,
   closeOnSelect?: boolean,
@@ -115,7 +117,8 @@ class MonthPickerInput extends Component<IProps, IState> {
     const mask = e.target.value;
 
     if (mask.length && mask.indexOf('_') === -1) {
-      const [month, year] = valuesFromMask(mask, this.t);
+      const [minDate, maxDate] = validationOfDate(this.props.minDate, this.props.maxDate, this.props.maxYear);
+      const [month, year] = valuesFromMask(mask, this.t, minDate, maxDate);
       const inputValue = this.valuesToMask(month, year);
       this.setState({ year, month, inputValue });
       this.onChange(inputValue, year, month);
@@ -145,7 +148,7 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   calendar = (): JSX.Element => {
-    const { startYear, maxYear } = this.props;
+    const { startYear, maxYear, minDate, maxDate } = this.props;
     const { year, month } = this.state;
 
     return (
@@ -155,6 +158,8 @@ class MonthPickerInput extends Component<IProps, IState> {
           month={month}
           maxYear={maxYear}
           startYear={startYear}
+          minDate={minDate}
+          maxDate={maxDate}
           onChange={this.onCalendarChange}
           onOutsideClick={this.onCalendarOutsideClick}
           translator={this.t}

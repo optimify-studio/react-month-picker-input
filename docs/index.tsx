@@ -205,6 +205,20 @@ const Example7 = () => {
   );
 }
 
+const Example7_1 = () => {
+  const id = `ex-${shortid.generate()}`;
+
+  return (
+    <div className="example">
+      <h2>Limit selection with minDate or maxDate constraints</h2>
+
+      <pre>{ jsxToString(<MonthPickerInput minDate={[10, 2015]} maxDate={[1, 2042]}/>) }</pre>
+
+      <MonthPickerInput minDate={[10, 2015]} maxDate={[1, 2042]} inputProps={{id, name: id}} />
+    </div>
+  );
+}
+
 interface IExample8State {
   year: number,
   month: number
@@ -226,6 +240,7 @@ class Example8 extends Component<{}, IExample8State> {
     return (
       <div className="example">
         <h2>Assign new year and month</h2>
+
         <div>
           <input placeholder="Year" id={`ex-${id}-year`} type="number"
             onChange={(e) => this.setState({ year: parseInt(e.target.value) || 2018 })} />
@@ -254,6 +269,7 @@ ReactDOM.render(
       <Example5 />
       <Example6 />
       <Example7 />
+      <Example7_1 />
       <Example8 />
     </div>
   ),
