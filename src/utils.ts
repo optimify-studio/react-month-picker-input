@@ -69,7 +69,7 @@ export const validationOfDate = (minDate?: [number, number], maxDate?: [number, 
         maxDateValid = [12, maxYear]
         console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
       };
-    } else if (maxDate && maxDate.length !=2 ){
+    } else if (maxDate && maxDate.length != 2){
       maxDateValid = [12, maxYear]
       console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
     };
@@ -81,7 +81,7 @@ export const validationOfDate = (minDate?: [number, number], maxDate?: [number, 
     } else {
       console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
     };
-  } else if (maxDate && maxDate.length!=2){
+  } else if (maxDate && maxDate.length != 2){
     console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
   };
 
