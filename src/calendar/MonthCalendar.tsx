@@ -163,7 +163,7 @@ class MonthCalendar extends Component<IProps, IState> {
       const disable = year > maxDateYear;
       const selectedKlass = selectedYear === year ? 'selected_cell' : '';
 
-      if (disable) return <div />;
+      if (disable) return <div key={i} />;
 
       return (
         <div

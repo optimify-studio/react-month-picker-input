@@ -50041,7 +50041,7 @@ var MonthCalendar = /** @class */ (function (_super) {
                 var disable = year > maxDateYear;
                 var selectedKlass = selectedYear === year ? 'selected_cell' : '';
                 if (disable)
-                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null);
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i });
                 return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i, onClick: function () { return _this.selectYear(year); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, year));
             });
         };
