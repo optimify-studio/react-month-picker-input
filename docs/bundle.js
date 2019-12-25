@@ -50004,7 +50004,9 @@ var MonthCalendar = /** @class */ (function (_super) {
         _this.next = function () {
             if (_this.props.readOnly)
                 return;
-            var startYear = _this.state.years[11] + 1;
+            var maxDateYear = _this.minMaxDate()[1][1];
+            var nextStartYear = _this.state.years[11] + 1;
+            var startYear = nextStartYear + 11 > maxDateYear ? maxDateYear - 11 : nextStartYear;
             _this.updateYears(startYear);
         };
         _this.onYearClick = function () {
@@ -50013,10 +50015,10 @@ var MonthCalendar = /** @class */ (function (_super) {
             _this.setState({ currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_YEARS */] });
         };
         _this.getNormalizedStartYear = function (startYear) {
-            var maxDate = _this.minMaxDate()[1];
+            var minDateYear = _this.minMaxDate()[0][1];
             startYear = startYear || _this.props.year || new Date().getFullYear() - 6;
-            var maxDateYear = maxDate[1];
-            return startYear + 11 > maxDateYear ? maxDateYear - 11 : startYear;
+            return startYear < minDateYear ? minDateYear : startYear;
+            ;
         };
         _this.updateYears = function (startYear) {
             var years = Array.from({ length: 12 }, function (v, k) { return k + _this.getNormalizedStartYear(startYear); });
@@ -50035,7 +50037,11 @@ var MonthCalendar = /** @class */ (function (_super) {
         _this.renderYears = function () {
             var selectedYear = _this.state.selectedYear;
             return _this.state.years.map(function (year, i) {
+                var maxDateYear = _this.minMaxDate()[1][1];
+                var disable = year > maxDateYear;
                 var selectedKlass = selectedYear === year ? 'selected_cell' : '';
+                if (disable)
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null);
                 return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: i, onClick: function () { return _this.selectYear(year); }, className: "col_mp span_1_of_3_mp " + selectedKlass }, year));
             });
         };
