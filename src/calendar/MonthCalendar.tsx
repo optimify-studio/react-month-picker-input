@@ -109,7 +109,10 @@ class MonthCalendar extends Component<IProps, IState> {
   next = (): void => {
     if (this.props.readOnly) return;
 
-    const startYear = this.state.years[11] + 1;
+    const maxDateYear = this.minMaxDate()[1][1];
+    const nextStartYear = this.state.years[11] + 1;
+    const startYear = nextStartYear + 11 > maxDateYear ? maxDateYear - 11 : nextStartYear;
+
     this.updateYears(startYear);
   }
 
@@ -120,10 +123,10 @@ class MonthCalendar extends Component<IProps, IState> {
   }
 
   getNormalizedStartYear = (startYear: number | undefined): number => {
-    const maxDate = this.minMaxDate()[1];
+    const minDateYear = this.minMaxDate()[0][1];
     startYear = startYear || this.props.year || new Date().getFullYear() - 6;
-    const maxDateYear = maxDate[1];
-    return startYear + 11 > maxDateYear ? maxDateYear - 11 : startYear;
+
+    return startYear < minDateYear ? minDateYear : startYear;;
   }
 
   updateYears = (startYear: number): void => {
@@ -156,7 +159,11 @@ class MonthCalendar extends Component<IProps, IState> {
     const { selectedYear } = this.state;
 
     return this.state.years.map((year, i) => {
+      const maxDateYear = this.minMaxDate()[1][1];
+      const disable = year > maxDateYear;
       const selectedKlass = selectedYear === year ? 'selected_cell' : '';
+
+      if (disable) return;
 
       return (
         <div
