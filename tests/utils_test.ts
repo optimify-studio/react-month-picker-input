@@ -51,14 +51,14 @@ describe('valuesFromMask', () => {
   describe('when date less than minDate', () => {
     it('changes date to minDate', () => {
       const result = valuesFromMask('1/1966',  new Translator('default', { dateFormat: { default: 'MM/YYYY' } }), [4, 1978], [10, 2020]);
-      expect(result).to.eql([3, 1978]);
+      expect(result).to.eql([4, 1978]);
     });
   });
 
   describe('when date more than maxDate', () => {
     it('changes date to maxDate', () => {
       const result = valuesFromMask('9/2024',  new Translator('default', { dateFormat: { default: 'MM/YYYY' } }), [1, 1978], [6, 2020]);
-      expect(result).to.eql([5, 2020]);
+      expect(result).to.eql([6, 2020]);
     });
   });
 });

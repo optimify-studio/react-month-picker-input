@@ -20429,11 +20429,11 @@ var valuesFromMask = function (maskedValue, translate, minDate, maxDate) {
     }
     ;
     if (year == maxDateYear) {
-        monthNum = monthNum > maxDateMonth ? maxDateMonth : monthNum;
+        monthNum = monthNum > maxDateMonth + 1 ? maxDateMonth + 1 : monthNum;
     }
     ;
     if (year == minDateYear) {
-        monthNum = monthNum < minDateMonth ? minDateMonth : monthNum;
+        monthNum = monthNum < minDateMonth + 1 ? minDateMonth + 1 : monthNum;
     }
     else {
         monthNum = monthNum;
@@ -20443,12 +20443,12 @@ var valuesFromMask = function (maskedValue, translate, minDate, maxDate) {
     return [month, year];
 };
 var validationOfDate = function (minDate, maxDate, maxYear) {
-    var minDateValid = [1, 1];
-    var maxDateValid = [12, 9999];
+    var minDateValid = [0, 1];
+    var maxDateValid = [11, 9999];
     if (minDate && minDate.length == 2) {
         var minDateMonthVal = minDate[0], minDateYear = minDate[1];
         if (typeof minDateMonthVal == 'number' && typeof minDateYear == 'number') {
-            var minDateMonth = minDateMonthVal > 12 ? 12 : (minDateMonthVal == 0 ? 1 : minDateMonthVal);
+            var minDateMonth = minDateMonthVal > 11 ? 11 : minDateMonthVal;
             minDateValid = [minDateMonth, minDateYear];
         }
         else {
@@ -20464,17 +20464,17 @@ var validationOfDate = function (minDate, maxDate, maxYear) {
         if (maxDate && maxDate.length == 2) {
             var maxDateMonthVal = maxDate[0], maxDateYear = maxDate[1];
             if (typeof maxDateMonthVal == 'number' && typeof maxDateYear == 'number') {
-                var maxDateMonth = maxDateMonthVal > 12 ? 12 : (maxDateMonthVal == 0 ? 1 : maxDateMonthVal);
-                maxYear < maxDateYear ? maxDateValid = [12, maxYear] : maxDateValid = [maxDateMonth, maxDateYear];
+                var maxDateMonth = maxDateMonthVal > 11 ? 11 : maxDateMonthVal;
+                maxYear < maxDateYear ? maxDateValid = [11, maxYear] : maxDateValid = [maxDateMonth, maxDateYear];
             }
             else {
-                maxDateValid = [12, maxYear];
+                maxDateValid = [11, maxYear];
                 console.warn("Wrong type of date for maxDate. Must be [number(month), number(year)]");
             }
             ;
         }
         else if (maxDate && maxDate.length != 2) {
-            maxDateValid = [12, maxYear];
+            maxDateValid = [11, maxYear];
             console.warn("Wrong type of date for maxDate. Must be [number(month), number(year)]");
         }
         ;
@@ -20482,7 +20482,7 @@ var validationOfDate = function (minDate, maxDate, maxYear) {
     else if (maxDate && maxDate.length == 2) {
         var maxDateMonthVal = maxDate[0], maxDateYear = maxDate[1];
         if (typeof maxDateMonthVal == 'number' && typeof maxDateYear == 'number') {
-            var maxDateMonth = maxDateMonthVal > 12 ? 12 : (maxDateMonthVal == 0 ? 1 : maxDateMonthVal);
+            var maxDateMonth = maxDateMonthVal > 11 ? 11 : maxDateMonthVal;
             maxDateValid = [maxDateMonth, maxDateYear];
         }
         else {
@@ -20494,7 +20494,7 @@ var validationOfDate = function (minDate, maxDate, maxYear) {
         console.warn("Wrong type of date for maxDate. Must be [number(month), number(year)]");
     }
     ;
-    minDateValid[1] > maxDateValid[1] ? minDateValid = [1, 1] : minDateValid[1];
+    minDateValid[1] > maxDateValid[1] ? minDateValid = [0, 1] : minDateValid[1];
     return [minDateValid, maxDateValid];
 };
 
@@ -49985,11 +49985,11 @@ var MonthCalendar = /** @class */ (function (_super) {
             if (_this.props.readOnly)
                 return;
             if (maxDateYear == _this.state.selectedYear) {
-                selectedMonth = selectedMonth > maxDateMonth - 1 ? maxDateMonth - 1 : selectedMonth;
+                selectedMonth = selectedMonth > maxDateMonth ? maxDateMonth : selectedMonth;
             }
             ;
             if (minDateYear == _this.state.selectedYear) {
-                selectedMonth = selectedMonth < minDateMonth - 1 ? minDateMonth - 1 : selectedMonth;
+                selectedMonth = selectedMonth < minDateMonth ? minDateMonth : selectedMonth;
             }
             ;
             _this.setState({ selectedMonth: selectedMonth });
@@ -50071,9 +50071,10 @@ var MonthCalendar = /** @class */ (function (_super) {
     };
     MonthCalendar.prototype.render = function () {
         var _a = this.state, selectedYear = _a.selectedYear, selectedMonth = _a.selectedMonth;
+        var month = 0 <= selectedMonth == selectedMonth <= 11;
         var containerClass = "calendar-container " + (this.props.readOnly ? 'readonly' : '');
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__OutsideClickWrapper__["a" /* default */], { onOutsideClick: this.props.onOutsideClick, className: containerClass },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: selectedMonth ? selectedMonth + 1 : undefined, lang: this.t.lang, onValueClick: this.onYearClick, onPrev: this.previous, onNext: this.next }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: month ? +selectedMonth + 1 : undefined, lang: this.t.lang, onValueClick: this.onYearClick, onPrev: this.previous, onNext: this.next }),
             this.isYears() ? this.renderYears() : this.renderMonths()));
     };
     MonthCalendar.defaultProps = {

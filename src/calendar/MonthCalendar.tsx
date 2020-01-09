@@ -90,10 +90,10 @@ class MonthCalendar extends Component<IProps, IState> {
     const [[minDateMonth, minDateYear], [maxDateMonth, maxDateYear]] = this.minMaxDate();
     if (this.props.readOnly) return;
     if (maxDateYear == this.state.selectedYear) {
-      selectedMonth = selectedMonth > maxDateMonth - 1 ? maxDateMonth - 1 : selectedMonth;
+      selectedMonth = selectedMonth > maxDateMonth ? maxDateMonth : selectedMonth;
     };
     if (minDateYear == this.state.selectedYear) {
-      selectedMonth = selectedMonth < minDateMonth - 1 ? minDateMonth - 1 : selectedMonth;
+      selectedMonth = selectedMonth < minDateMonth ? minDateMonth : selectedMonth;
     };
     this.setState({ selectedMonth });
     this.onChange(this.state.selectedYear, selectedMonth);
@@ -177,6 +177,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
   render(): JSX.Element {
     const { selectedYear, selectedMonth } = this.state;
+    const month = 0 <= selectedMonth == selectedMonth <= 11;
 
     const containerClass = `calendar-container ${this.props.readOnly ? 'readonly' : ''}`;
 
@@ -187,7 +188,7 @@ class MonthCalendar extends Component<IProps, IState> {
       >
         <Head
           year={selectedYear}
-          month={selectedMonth ? selectedMonth + 1 : undefined}
+          month={month ? +selectedMonth + 1 : undefined}
           lang={this.t.lang}
           onValueClick={this.onYearClick}
           onPrev={this.previous}
