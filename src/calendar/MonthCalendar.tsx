@@ -177,8 +177,6 @@ class MonthCalendar extends Component<IProps, IState> {
 
   render(): JSX.Element {
     const { selectedYear, selectedMonth } = this.state;
-    const month = 0 <= selectedMonth == selectedMonth <= 11;
-
     const containerClass = `calendar-container ${this.props.readOnly ? 'readonly' : ''}`;
 
     return (
@@ -188,7 +186,7 @@ class MonthCalendar extends Component<IProps, IState> {
       >
         <Head
           year={selectedYear}
-          month={month ? +selectedMonth + 1 : undefined}
+          month={+selectedMonth + 1 || 1}
           lang={this.t.lang}
           onValueClick={this.onYearClick}
           onPrev={this.previous}
