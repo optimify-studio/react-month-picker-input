@@ -19,7 +19,7 @@ Live demo: [slavakisel.github.io/react-month-picker-input](https://slavakisel.gi
 | closeOnSelect | boolean | false | Close calendar on month select |
 | lang | string | en | One of: `en`, `ja`, `es`, `fr`, `ru`, `ua`, `hu` |
 | i18n | i18n object (optional) | see i18n schema below | i18n object. For now date formats must be either `MM/YY` or `YY/MM` |
-| minDate, maxDate | [number, number] | [1, 1], [12, 9999] | Limit selection with minDate or maxDate constraints |
+| minDate, maxDate | [number, number] | [0, 1], [11, 9999] | Limit selection with minDate or maxDate constraints |
 
 ### I18n config
 

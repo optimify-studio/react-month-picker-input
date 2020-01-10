@@ -101,6 +101,8 @@ class MonthPickerInput extends Component<IProps, IState> {
   }
 
   onCalendarChange = (year: number, month: number): void => {
+    const [minDate, maxDate] = validationOfDate(this.props.minDate, this.props.maxDate, this.props.maxYear);
+    [month, year] = valuesFromMask(this.valuesToMask(month, year), this.t, minDate, maxDate);
     const inputValue = this.valuesToMask(month, year);
     this.setState({
       inputValue,

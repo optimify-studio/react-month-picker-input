@@ -33,10 +33,10 @@ export const valuesFromMask = (maskedValue: string, translate: Translator, minDa
     minDateMonth <= maxDateMonth ? minDateMonth : maxDateMonth;
   };
   if (year == maxDateYear) {
-    monthNum = monthNum > maxDateMonth ? maxDateMonth : monthNum;
+    monthNum = monthNum > maxDateMonth + 1 ? maxDateMonth + 1 : monthNum;
   };
   if (year == minDateYear) {
-    monthNum = monthNum < minDateMonth ? minDateMonth : monthNum;
+    monthNum = monthNum < minDateMonth + 1 ? minDateMonth + 1 : monthNum;
   } else{
     monthNum = monthNum;
   };
@@ -45,12 +45,12 @@ export const valuesFromMask = (maskedValue: string, translate: Translator, minDa
 };
 
 export const validationOfDate = (minDate?: [number, number], maxDate?: [number, number], maxYear?: number): any => {
-  let minDateValid = [1, 1];
-  let maxDateValid = [12, 9999];
+  let minDateValid = [0, 1];
+  let maxDateValid = [11, 9999];
   if (minDate && minDate.length == 2) {
     const [minDateMonthVal, minDateYear] = minDate;
     if (typeof minDateMonthVal == 'number' && typeof minDateYear == 'number') {
-      const minDateMonth = minDateMonthVal > 12 ? 12 : (minDateMonthVal == 0 ? 1 : minDateMonthVal);
+      const minDateMonth = minDateMonthVal > 11 ? 11 : minDateMonthVal;
       minDateValid = [minDateMonth, minDateYear]
     } else {
       console.warn(`Wrong type of date for minDate. Must be [number(month), number(year)]`);
@@ -63,20 +63,20 @@ export const validationOfDate = (minDate?: [number, number], maxDate?: [number, 
     if (maxDate && maxDate.length == 2) {
       const [maxDateMonthVal, maxDateYear] = maxDate;
       if (typeof maxDateMonthVal == 'number' && typeof maxDateYear == 'number') {
-        const maxDateMonth = maxDateMonthVal > 12 ? 12 : (maxDateMonthVal == 0 ? 1 : maxDateMonthVal);
-        maxYear < maxDateYear ? maxDateValid = [12, maxYear] : maxDateValid = [maxDateMonth, maxDateYear];
+        const maxDateMonth = maxDateMonthVal > 11 ? 11 : maxDateMonthVal;
+        maxYear < maxDateYear ? maxDateValid = [11, maxYear] : maxDateValid = [maxDateMonth, maxDateYear];
       } else {
-        maxDateValid = [12, maxYear]
+        maxDateValid = [11, maxYear]
         console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
       };
     } else if (maxDate && maxDate.length != 2){
-      maxDateValid = [12, maxYear]
+      maxDateValid = [11, maxYear]
       console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
     };
   } else if (maxDate && maxDate.length == 2) {
     const [maxDateMonthVal, maxDateYear] = maxDate;
     if (typeof maxDateMonthVal == 'number' && typeof maxDateYear == 'number') {
-      const maxDateMonth = maxDateMonthVal > 12 ? 12 : (maxDateMonthVal == 0 ? 1 : maxDateMonthVal);
+      const maxDateMonth = maxDateMonthVal > 11 ? 11 : maxDateMonthVal;
       maxDateValid = [maxDateMonth, maxDateYear]
     } else {
       console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
@@ -85,6 +85,6 @@ export const validationOfDate = (minDate?: [number, number], maxDate?: [number, 
     console.warn(`Wrong type of date for maxDate. Must be [number(month), number(year)]`);
   };
 
-  minDateValid[1] > maxDateValid[1] ? minDateValid = [1, 1] : minDateValid[1];
+  minDateValid[1] > maxDateValid[1] ? minDateValid = [0, 1] : minDateValid[1];
   return [minDateValid, maxDateValid];
 }
