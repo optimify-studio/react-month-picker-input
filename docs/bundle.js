@@ -48928,6 +48928,8 @@ var MonthPickerInput = /** @class */ (function (_super) {
                 return '';
         };
         _this.onCalendarChange = function (year, month) {
+            var _a = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["a" /* validationOfDate */])(_this.props.minDate, _this.props.maxDate, _this.props.maxYear), minDate = _a[0], maxDate = _a[1];
+            _b = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* valuesFromMask */])(_this.valuesToMask(month, year), _this.t, minDate, maxDate), month = _b[0], year = _b[1];
             var inputValue = _this.valuesToMask(month, year);
             _this.setState({
                 inputValue: inputValue,
@@ -48936,6 +48938,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
                 showCalendar: !_this.props.closeOnSelect
             });
             _this.onChange(inputValue, year, month);
+            var _b;
         };
         _this.onInputChange = function (e) {
             if (_this.inputReadonly())
@@ -50071,10 +50074,9 @@ var MonthCalendar = /** @class */ (function (_super) {
     };
     MonthCalendar.prototype.render = function () {
         var _a = this.state, selectedYear = _a.selectedYear, selectedMonth = _a.selectedMonth;
-        var month = 0 <= selectedMonth == selectedMonth <= 11;
         var containerClass = "calendar-container " + (this.props.readOnly ? 'readonly' : '');
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__OutsideClickWrapper__["a" /* default */], { onOutsideClick: this.props.onOutsideClick, className: containerClass },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: month ? +selectedMonth + 1 : undefined, lang: this.t.lang, onValueClick: this.onYearClick, onPrev: this.previous, onNext: this.next }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Head__["a" /* default */], { year: selectedYear, month: +selectedMonth + 1 || 1, lang: this.t.lang, onValueClick: this.onYearClick, onPrev: this.previous, onNext: this.next }),
             this.isYears() ? this.renderYears() : this.renderMonths()));
     };
     MonthCalendar.defaultProps = {
