@@ -1,6 +1,6 @@
 .react-month-picker {}
 .react-month-picker .calendar-container {
-  width: 360px;
+  max-width: 360px;
   position: absolute;
   top: 0;
   right: 0;
@@ -75,4 +75,10 @@
 }
 .react-month-picker .month-input.readonly {
   background-color: #eee;
+}
+
+@media only screen and (max-width: 360px) {
+  .react-month-picker .col_mp {
+    font-size: 14px;
+  }
 }
