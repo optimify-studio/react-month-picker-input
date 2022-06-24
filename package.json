@@ -1,6 +1,6 @@
 {
   "name": "react-month-picker-input",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "description": "Simple month picker with calendar and input field with mask.",
   "main": "./dist/react-month-picker-input.js",
   "repository": {

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.9](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.8...v1.3.9) (2022-06-24)
+
+* Bump react and react-dom to 16.14.0
+* Bump typescript to 2.9.2
+* Other dependabot updates, see full list [here](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.8...v1.3.9)
+
+
 ### [1.3.8](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.7...v1.3.8) (2020-06-08)
 
 ### [1.3.7](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.4...v1.3.7) (2020-04-06)
