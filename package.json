@@ -5,7 +5,7 @@
   "main": "./dist/react-month-picker-input.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slavakisel/react-month-picker-input.git"
+    "url": "git+https://github.com/optimify-studio/react-month-picker-input.git"
   },
   "keywords": [
     "react",
@@ -13,7 +13,7 @@
   ],
   "author": "Slava Kisel <letitbe400@gmail.com>",
   "bugs": {
-    "url": "https://github.com/slavakisel/react-month-picker-input/issues"
+    "url": "https://github.com/optimify-studio/react-month-picker-input/issues"
   },
   "license": "MIT",
   "devDependencies": {

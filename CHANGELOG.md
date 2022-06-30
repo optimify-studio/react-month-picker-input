@@ -2,38 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.3.9](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.8...v1.3.9) (2022-06-24)
+### [1.3.9](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.8...v1.3.9) (2022-06-24)
 
 * Bump react and react-dom to 16.14.0
 * Bump typescript to 2.9.2
 * Other dependabot updates, see full list [here](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.8...v1.3.9)
 
 
-### [1.3.8](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.7...v1.3.8) (2020-06-08)
+### [1.3.8](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.7...v1.3.8) (2020-06-08)
 
-### [1.3.7](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.4...v1.3.7) (2020-04-06)
+### [1.3.7](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.4...v1.3.7) (2020-04-06)
 
-### [1.3.6](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.4...v1.3.6) (2020-04-06)
+### [1.3.6](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.4...v1.3.6) (2020-04-06)
 
-### [1.3.5](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.4...v1.3.5) (2020-04-06)
+### [1.3.5](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.4...v1.3.5) (2020-04-06)
 
-### [1.3.4](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.3...v1.3.4) (2020-01-15)
+### [1.3.4](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.3...v1.3.4) (2020-01-15)
 
-### [1.3.3](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.2...v1.3.3) (2020-01-10)
+### [1.3.3](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.2...v1.3.3) (2020-01-10)
 
-### [1.3.2](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.1...v1.3.2) (2019-12-25)
+### [1.3.2](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.1...v1.3.2) (2019-12-25)
 
-### [1.3.1](https://github.com/slavakisel/react-month-picker-input/compare/v1.3.0...v1.3.1) (2019-12-25)
+### [1.3.1](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.0...v1.3.1) (2019-12-25)
 
-## [1.3.0](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.11...v1.3.0) (2019-10-08)
+## [1.3.0](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.11...v1.3.0) (2019-10-08)
 
 * Added support for minDate and maxDate [#12](https://github.com/vk-lab/react-month-picker-input/pull/38)
 
-### [1.2.11](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.10...v1.2.11) (2019-10-03)
+### [1.2.11](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.10...v1.2.11) (2019-10-03)
 
-### [1.2.10](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.9...v1.2.10) (2019-10-03)
+### [1.2.10](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.9...v1.2.10) (2019-10-03)
 
-### [1.2.9](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.8...v1.2.9) (2019-10-02)
+### [1.2.9](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.8...v1.2.9) (2019-10-02)
 
 * chore(deps): bump forwarded from 0.1.1 to 0.1.2 dependencies
 * chore(deps-dev): bump webpack-dev-server from 2.7.1 to 3.1.11 dependencies
@@ -51,42 +51,42 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 <a name="1.2.8"></a>
-## [1.2.8](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.7...v1.2.8) (2019-10-02)
+## [1.2.8](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.7...v1.2.8) (2019-10-02)
 
 Bumps [tar](https://github.com/npm/node-tar) from 2.2.1 to 2.2.2.
 
 <a name="1.2.7"></a>
-## [1.2.7](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.6...v1.2.7) (2019-08-15)
+## [1.2.7](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.6...v1.2.7) (2019-08-15)
 
 
 
 <a name="1.2.6"></a>
-## [1.2.6](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.5...v1.2.6) (2019-08-15)
+## [1.2.6](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.5...v1.2.6) (2019-08-15)
 
 
 
 <a name="1.2.5"></a>
-## [1.2.5](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.4...v1.2.5) (2019-08-06)
+## [1.2.5](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.4...v1.2.5) (2019-08-06)
 
 
 
 <a name="1.2.4"></a>
-## [1.2.4](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.3...v1.2.4) (2019-07-14)
+## [1.2.4](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.3...v1.2.4) (2019-07-14)
 
 
 
 <a name="1.2.3"></a>
-## [1.2.3](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.2...v1.2.3) (2019-06-11)
+## [1.2.3](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.2...v1.2.3) (2019-06-11)
 
 
 
 <a name="1.2.2"></a>
-## [1.2.2](https://github.com/slavakisel/react-month-picker-input/compare/v1.2.1...v1.2.2) (2019-03-27)
+## [1.2.2](https://github.com/optimify-studio/react-month-picker-input/compare/v1.2.1...v1.2.2) (2019-03-27)
 
 
 
 <a name="1.2.1"></a>
-## [1.2.1](https://github.com/slavakisel/react-month-picker-input/compare/v1.1.6...v1.2.1) (2019-03-27)
+## [1.2.1](https://github.com/optimify-studio/react-month-picker-input/compare/v1.1.6...v1.2.1) (2019-03-27)
 
 * Added component modes. Default is `normal`. Can be changed via `mode` prop. Available modes:
   * `normal` - input and calendar can be used as usual
@@ -95,6 +95,6 @@ Bumps [tar](https://github.com/npm/node-tar) from 2.2.1 to 2.2.2.
   calendar works as usual
 
 <a name="1.2.0"></a>
-# [1.2.0](https://github.com/slavakisel/react-month-picker-input/compare/v1.1.6...v1.2.0) (2019-01-09)
+# [1.2.0](https://github.com/optimify-studio/react-month-picker-input/compare/v1.1.6...v1.2.0) (2019-01-09)
 
 * Isolated component styles in the `.react-month-picker` selector

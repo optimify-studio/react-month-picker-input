@@ -5,7 +5,7 @@ A month picker input and calendar for [React](http://facebook.github.io/react/in
 
 ## Demo
 
-Live demo: [slavakisel.github.io/react-month-picker-input](https://slavakisel.github.io/react-month-picker-input/)
+Live demo: [optimify-studio.github.io/react-month-picker-input](https://https://optimify-studio.github.io/react-month-picker-input/)
 
 ## API
 
