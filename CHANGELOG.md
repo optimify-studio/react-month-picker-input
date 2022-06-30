@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.3.10](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.9...v1.3.10) (2022-06-30)
 
+* Fix links to demo page and package repository
+
 ### [1.3.9](https://github.com/optimify-studio/react-month-picker-input/compare/v1.3.8...v1.3.9) (2022-06-24)
 
 * Bump react and react-dom to 16.14.0
